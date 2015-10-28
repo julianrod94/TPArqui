@@ -82,6 +82,8 @@ void * initializeKernelBinary()
 
 int main()
 {	
+	// maeameeeeeeee
+
 	ncPrint("[Kernel Main]");
 	ncNewline();
 	ncPrint("  Sample code module at 0x");
