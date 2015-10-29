@@ -1,7 +1,11 @@
 
 static char buffer[256];
 
-void keyBoardInt()
+void keyBoardInt(int key) {
+    
+    // bla bla bla
+}
 
 
-void video()
+
+
