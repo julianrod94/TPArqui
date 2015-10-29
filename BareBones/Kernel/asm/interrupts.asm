@@ -15,7 +15,7 @@ GLOBAL portRead
 
 
 EXTERN irqDispatcher
-
+EXTERN readLineWrapper
 
 
 %macro pushaq 0
@@ -126,3 +126,6 @@ portRead:
 	mov rax, 0
 	in al, dx
 	ret
+
+    readLineInt:
+    

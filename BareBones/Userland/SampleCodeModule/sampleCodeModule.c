@@ -8,14 +8,12 @@ extern char endOfBinary;
 static int var1 = 0;
 static int var2 = 0;
 
+
 void * memset(void * destiny, int32_t c, uint64_t length);
 
 int main() {
 	//Clean BSS
 	memset(&bss, 0, &endOfBinary - &bss);
-
-	//All the following code may be removed 
-	
 
 	//Test if BSS is properly set up
 	if (var1 == 0 && var2 == 0)

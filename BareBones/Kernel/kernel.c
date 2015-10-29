@@ -88,7 +88,8 @@ int main()
 {	
 
 	setup_IDT_entry(0x20, 0x8,(uint64_t) &_irq00Handler, 0x8E);	
-	setup_IDT_entry(0x21, 0x8, (uint64_t)&_irq01Handler, 0x8E);	
+	setup_IDT_entry(0x21, 0x8, (uint64_t)&_irq01Handler, 0x8E);
+	setup_IDT_entry(0x80, 0x8,(uint64_t) &syscallHandler, 0x8E);
 	
 
 	picMasterMask(0xFC); 
