@@ -95,7 +95,7 @@ int main()
 	picSlaveMask(0xFF);
 
 	_sti();
-	
+
 	ncPrint("[Kernel Main]");
 	ncNewline();
 	ncPrint("  Sample code module at 0x");
@@ -115,7 +115,7 @@ int main()
 
 	ncPrint("[Finished]");
 
-
+	ncClear();
 	while(1);
 
 

@@ -52,6 +52,12 @@ void ncPrintBase(uint64_t value, uint32_t base)
     ncPrint(buffer);
 }
 
+void ncBackSpace(){
+	currentVideo -= 2;
+	ncPrintChar(' ');
+	currentVideo -= 2;
+}
+
 void ncClear()
 {
 	int i;

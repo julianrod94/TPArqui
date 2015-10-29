@@ -2,6 +2,7 @@
 #include <naiveConsole.h>
 #include <interrupts.h>
 #include <handlers.h>
+#include <keyboard.h>
 
 static int ticks = 0;
 
@@ -9,7 +10,7 @@ static int ticks = 0;
 void irqDispatcher(dword irq, dword syscall){	
 	switch(irq) {
 		case 0:
-			int08();
+			//int08();
 			break;
 		case 1:
 			int09();
@@ -17,8 +18,6 @@ void irqDispatcher(dword irq, dword syscall){
 	}
 	return;
 }
-
-
 
 
 void int08(){
@@ -29,5 +28,6 @@ void int08(){
 }
 
 void int09(){
-	ncPrintDec(portRead());
+	myKeyboard();
 }
+
