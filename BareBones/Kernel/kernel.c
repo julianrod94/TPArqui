@@ -4,6 +4,9 @@
 #include <moduleLoader.h>
 #include <naiveConsole.h>
 
+#include <interrupts.h>
+#include <types.h>
+
 extern uint8_t text;
 extern uint8_t rodata;
 extern uint8_t data;
@@ -12,6 +15,7 @@ extern uint8_t endOfKernelBinary;
 extern uint8_t endOfKernel;
 
 static const uint64_t PageSize = 0x1000;
+IDT_entry *idt=(IDT_entry*)0;
 
 static void * const sampleCodeModuleAddress = (void*)0x400000;
 static void * const sampleDataModuleAddress = (void*)0x500000;
@@ -82,8 +86,16 @@ void * initializeKernelBinary()
 
 int main()
 {	
-	// maeameeeeeeee
 
+	setup_IDT_entry(0x20, 0x8,(uint64_t) &_irq00Handler, 0x8E);	
+	setup_IDT_entry(0x21, 0x8, (uint64_t)&_irq01Handler, 0x8E);	
+	
+
+	picMasterMask(0xFC); 
+	picSlaveMask(0xFF);
+
+	_sti();
+	
 	ncPrint("[Kernel Main]");
 	ncNewline();
 	ncPrint("  Sample code module at 0x");
@@ -102,5 +114,22 @@ int main()
 	ncNewline();
 
 	ncPrint("[Finished]");
+
+
+	while(1);
+
+
+
 	return 0;
+}
+
+void setup_IDT_entry(uint16_t index, uint16_t selector, uint64_t offset, uint8_t type_attr){
+	idt[index].selector=selector;
+	idt[index].zero=0;
+	idt[index].zero2=0;
+	idt[index].type_attr=type_attr;
+	idt[index].offset_l= offset & 0xFFFF;
+	idt[index].offset_m= (offset >> 16) & 0xFFFF;
+	idt[index].offset_h = (offset >> 32) & 0xFFFFFFFF;
+	
 }
