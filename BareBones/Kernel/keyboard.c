@@ -50,7 +50,8 @@ static uint64_t leftShift = 0;
 static uint64_t rightShift = 0;
 static char shiftChars[10] = {'!','"','#','$','%','&','/','(',')','='};
 static char buffer[256]={0};
-static uint64_t bufferIndex = 0;
+static uint64_t enQueueIndex = 0;
+static uint64_t deQueueIndex = 0;
 
 void myKeyboard(){
 	uint64_t num = portRead();
@@ -68,34 +69,10 @@ void myKeyboard(){
 		if(isNum(c) && shifted()){
 			c = shiftChars[c - '0' - 1];
 		}
-		if( c == '\n'){
-			if(bufferIndex<256){
-				buffer[bufferIndex] = c;
-				bufferIndex++;
-			}else{
-				bufferIndex = 0;
-			}
-		}
-		
-		if(c == '\n'){			// Enter
-			ncNewline();
-		}
-		else if(c == '\b'){		// BackSpace
-			if(bufferIndex<256){
-				buffer[bufferIndex] = c;
-				bufferIndex++;
-			}else{
-				bufferIndex = 0;
-			}
-		}
-		else{
-			if(bufferIndex<255){	
-				buffer[bufferIndex] = c;
-				bufferIndex++;	
-				ncPrintChar(c);
-			}else{
-				bufferIndex = 0;
-			}
+		if(enQueueIndex + 1 != deQueueIndex){	
+			buffer[enQueueIndex] = c;
+			enQueueIndex++;	
+			ncPrintChar(c);
 		}
 	}
 }
