@@ -69,7 +69,7 @@ void myKeyboard(){
 		if(isNum(c) && shifted()){
 			c = shiftChars[c - '0' - 1];
 		}
-		if(enQueueIndex + 1 != deQueueIndex){	
+		if((enQueueIndex<254 && enQueueIndex + 1 != deQueueIndex) || (enQueueIndex== 255 && deQueueIndex != 0)){	
 			buffer[enQueueIndex] = c;
 			enQueueIndex++;	
 			ncPrintChar(c);
@@ -89,6 +89,17 @@ uint64_t isNum(char c){
 		return 1;
 	}
 	return 0;
+}
+
+uint64_t readChar(void){
+	if(enQueueIndex == deQueueIndex){
+		return 0;
+	}
+	if(deQueueIndex == 0){
+		deQueueIndex = 255;
+		return buffer[0];
+	}
+	return buffer[deQueueIndex--];
 }
 
 uint64_t isMayus(uint64_t num){
