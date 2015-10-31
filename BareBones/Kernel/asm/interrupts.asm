@@ -12,10 +12,12 @@ GLOBAL _irq03Handler
 GLOBAL _irq04Handler
 GLOBAL _irq05Handler
 GLOBAL portRead
+GLOBAL syscallHandler
 
 
 EXTERN irqDispatcher
 EXTERN readLineWrapper
+EXTERN handler
 
 
 %macro pushaq 0
@@ -127,5 +129,7 @@ portRead:
 	in al, dx
 	ret
 
-    readLineInt:
-    
+syscallHandler:
+
+    call handler
+    iret

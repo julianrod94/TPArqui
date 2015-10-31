@@ -1,5 +1,6 @@
 GLOBAL cpuVendor
-
+GLOBAL _read:
+EXTERN syscallHandler
 section .text
 	
 cpuVendor:
@@ -25,3 +26,4 @@ cpuVendor:
 	mov rsp, rbp
 	pop rbp
 	ret
+

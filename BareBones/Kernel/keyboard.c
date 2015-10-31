@@ -72,24 +72,29 @@ void myKeyboard(){
 			if(bufferIndex<256){
 				buffer[bufferIndex] = c;
 				bufferIndex++;
+			}else{
+				bufferIndex = 0;
 			}
 		}
-		/*
+		
 		if(c == '\n'){			// Enter
 			ncNewline();
 		}
-		*/
-		if(c == '\b'){		// BackSpace
-			if(bufferIndex>=1){	
-				bufferIndex--;
+		else if(c == '\b'){		// BackSpace
+			if(bufferIndex<256){
+				buffer[bufferIndex] = c;
+				bufferIndex++;
+			}else{
+				bufferIndex = 0;
 			}
-			ncBackSpace();
 		}
 		else{
 			if(bufferIndex<255){	
 				buffer[bufferIndex] = c;
 				bufferIndex++;	
 				ncPrintChar(c);
+			}else{
+				bufferIndex = 0;
 			}
 		}
 	}

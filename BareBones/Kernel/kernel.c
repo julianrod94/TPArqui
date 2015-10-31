@@ -3,7 +3,8 @@
 #include <lib.h>
 #include <moduleLoader.h>
 #include <naiveConsole.h>
-#include "syscallHandler.h"
+#include <Handler.h>
+#include <handlers.h>
 
 #include <interrupts.h>
 #include <types.h>
@@ -14,6 +15,7 @@ extern uint8_t data;
 extern uint8_t bss;
 extern uint8_t endOfKernelBinary;
 extern uint8_t endOfKernel;
+uint64_t syscallHandler(uint64_t syscallId, uint64_t arg1, uint64_t arg2, uint64_t arg3, uint64_t arg4, uint64_t arg5, uint64_t arg6);
 
 static const uint64_t PageSize = 0x1000;
 IDT_entry *idt=(IDT_entry*)0;

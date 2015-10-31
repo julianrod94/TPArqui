@@ -10,7 +10,7 @@ static int ticks = 0;
 void irqDispatcher(dword irq, dword syscall){	
 	switch(irq) {
 		case 0:
-			//int08();
+			int08();
 			break;
 		case 1:
 			int09();
@@ -21,10 +21,6 @@ void irqDispatcher(dword irq, dword syscall){
 
 
 void int08(){
-	if(ticks % 10 == 0){
-		ncPrint("tick");
-	}
-	ticks++;
 }
 
 void int09(){

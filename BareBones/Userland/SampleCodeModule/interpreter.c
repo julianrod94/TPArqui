@@ -1,17 +1,19 @@
 #include <stdint.h>
 #define TRUE 1
 #define FALSE 0
+extern uint64_t syscaller(void);
 uint64_t stringCompare(char* str1, char* str2);
-uint64_t _read();
-void scanf(char* buffer){
+
+
+/*void scanf(char* buffer){
 	int i=0;
 	uint64_t source;
-	while((source = _read()) !='\n'){
+	while((source = syscaller()) !='\n'){
 		buffer[i] = (char) source;
 		i++;
 	}
 	return;
-}
+}*/
 
 
 void inputInterpreter(char* message){
@@ -23,7 +25,7 @@ void inputInterpreter(char* message){
 	//	startPiano();
 		return;
 	}
-	ncPrint("Command not found, try 'help'");
+	//ncPrint("Command not found, try 'help'");
 	return;
 }
 

@@ -1,5 +1,6 @@
 #ifndef HANDLERS_H
 #define HANDLERS_H
+#include <types.h>
 
 void picMasterMask(); 
 void picSlaveMask();
