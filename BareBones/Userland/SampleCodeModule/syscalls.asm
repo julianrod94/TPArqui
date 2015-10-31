@@ -1,7 +1,7 @@
 EXTERN syscallHandler
-GLOBAL _readLine
+GLOBAL _read
 
-_readLine:
+_read:
 	push rbp
 	mov rsp, rbp
 	mov rdi, 0   ;Id de readLine

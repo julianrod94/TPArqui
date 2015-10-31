@@ -1,15 +1,13 @@
 #include <stdint.h>
 #define TRUE 1
 #define FALSE 0
-/*TODO*/
-/*para mi esta mal, hay que hacer algo para que espere a que se vayan introdujendo las letras*/
-/*Duda con los int y uint64 poronga*/
+uint64_t stringCompare(char* str1, char* str2);
+uint64_t _read();
 void scanf(char* buffer){
 	int i=0;
-	char* source;
-	source =(char*) read();
-	while(source[i]!='/n'){
-		buffer[i] = source[i];
+	uint64_t source;
+	while((source = _read()) !='\n'){
+		buffer[i] = (char) source;
 		i++;
 	}
 	return;
@@ -18,11 +16,11 @@ void scanf(char* buffer){
 
 void inputInterpreter(char* message){
 	if(stringCompare(message,"help")){
-		showHelp();
+	//	showHelp();
 		return;
 	}
-	if(stringComapre(message,"piano")){
-		startPiano();
+	if(stringCompare(message,"piano")){
+	//	startPiano();
 		return;
 	}
 	ncPrint("Command not found, try 'help'");

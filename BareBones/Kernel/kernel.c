@@ -3,6 +3,7 @@
 #include <lib.h>
 #include <moduleLoader.h>
 #include <naiveConsole.h>
+#include "syscallHandler.h"
 
 #include <interrupts.h>
 #include <types.h>
