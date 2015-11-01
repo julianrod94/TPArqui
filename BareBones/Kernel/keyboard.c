@@ -71,8 +71,7 @@ void myKeyboard(){
 		}
 		if((enQueueIndex<254 && enQueueIndex + 1 != deQueueIndex) || (enQueueIndex== 255 && deQueueIndex != 0)){	
 			buffer[enQueueIndex] = c;
-			enQueueIndex++;	
-			ncPrintChar(c);
+			enQueueIndex++;
 		}
 	}
 }

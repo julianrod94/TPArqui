@@ -4,8 +4,6 @@
 #include <handlers.h>
 #include <keyboard.h>
 
-static int ticks = 0;
-
 
 void irqDispatcher(dword irq, dword syscall){	
 	switch(irq) {

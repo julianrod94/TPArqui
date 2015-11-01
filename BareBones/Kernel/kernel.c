@@ -5,6 +5,7 @@
 #include <naiveConsole.h>
 #include <Handler.h>
 #include <handlers.h>
+#include <sound.h>
 
 #include <interrupts.h>
 #include <types.h>
@@ -89,7 +90,7 @@ void * initializeKernelBinary()
 
 int main()
 {	
-
+	int i=0;
 	setup_IDT_entry(0x20, 0x8,(uint64_t) &_irq00Handler, 0x8E);	
 	setup_IDT_entry(0x21, 0x8, (uint64_t)&_irq01Handler, 0x8E);
 	setup_IDT_entry(0x80, 0x8,(uint64_t) &syscallHandler, 0x8E);
@@ -120,8 +121,11 @@ int main()
 	ncPrint("[Finished]");
 
 	ncClear();
-	while(1);
-
+	turnOnSound(5423);
+	while(i<10000000){
+		i++;
+	}
+	turnOffSound();
 
 
 	return 0;
