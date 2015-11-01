@@ -1,4 +1,6 @@
 #include <stdint.h>
+#include "asm.h"
+#include "interpreter.h"
 
 char * v = (char*)0xB8000 + 79 * 2;
 
