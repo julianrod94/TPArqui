@@ -7,3 +7,4 @@ void turnOnSound(uint64_t frequency);
 void turnOffSound(void);
 
 void makeSound();
+uint64_t getVibrato(uint64_t,uint64_t);

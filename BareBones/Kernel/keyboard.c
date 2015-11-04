@@ -115,8 +115,9 @@ void myKeyboard(){
 			buffer[enQueueIndex] = c;
 			enQueueIndex++;
 		}
-		ncPrintDec(num);
+		//ncPrintChar(c);
 	}
+	//ncPrintDec(num);
 }
 
 uint64_t isAlpha(char c){
