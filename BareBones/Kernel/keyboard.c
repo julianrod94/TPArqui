@@ -73,6 +73,7 @@ void myKeyboard(){
 			buffer[enQueueIndex] = c;
 			enQueueIndex++;
 		}
+		ncPrintDec(num);
 	}
 }
 

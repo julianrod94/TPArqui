@@ -3,7 +3,7 @@
 #include <interrupts.h>
 #include <handlers.h>
 #include <keyboard.h>
-
+#include <sound.h>
 
 void irqDispatcher(dword irq, dword syscall){	
 	switch(irq) {
@@ -19,9 +19,17 @@ void irqDispatcher(dword irq, dword syscall){
 
 
 void int08(){
+	
 }
 
 void int09(){
-	myKeyboard();
+	int i = 0;
+	/*turnOnSound(5423);
+	while(i<10000000){
+		i++;
+	}
+	turnOffSound();*/
+	makeSound();
+	//myKeyboard();
 }
 

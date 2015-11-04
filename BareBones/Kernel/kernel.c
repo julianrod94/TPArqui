@@ -121,9 +121,17 @@ int main()
 	ncPrint("[Finished]");
 
 	ncClear();
+<<<<<<< HEAD
 	while(){
 		i++;
 	}
+=======
+	/*turnOnSound(5423);
+	while(i<10000000){
+		i++;
+	}
+	turnOffSound();*/
+>>>>>>> 4810e70ad1b099784c7786ceb888495d1cb0ab5e
 
 
 	return 0;
