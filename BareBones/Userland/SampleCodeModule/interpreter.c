@@ -1,13 +1,13 @@
 #include "interpreter.h"
-// void scanf(char* buffer){
-// 	int i=0;
-// 	uint64_t source;
-// 	while((source = sysCaller(READ,-1,-1,-1,-1,-1,-1)) !='\n'){
-// 		buffer[i] = (char) source;
-// 		i++;
-// 	}
-// 	return;
-// }
+void scanf(char* buffer){
+	int i=0;
+	uint64_t source;
+	while((source = sysCaller(READ,-1,-1,-1,-1,-1,-1)) !='\n'){
+		buffer[i] = (char) source;
+		i++;
+	}
+	return;
+}
 
 
 void inputInterpreter(char* message){
