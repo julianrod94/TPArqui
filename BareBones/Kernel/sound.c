@@ -56,28 +56,37 @@ void soundHandler(uint64_t mode, uint64_t frequency) {
 
 uint64_t soundOn = 0;
 static uint64_t vibrato = 0;
-
+static uint64_t lastFrec = 0;
 void makeSound(){
 	uint64_t num = portRead();
+
 	uint64_t frec = frecTable[num];
+
 	if(num >= 128)
 		frec = 0;
-	uint64_t i = 0;
-	//if(num == 72)
+
+	if(num == 42 || num == 54){
+		vibrato = 1;
+		return;
+	}
+	if(num == 170 || num == 182){
+		vibrato = 0;
+		return;
+	}
+
 	if(frec != 0){
 		if(vibrato){
-			frec = (frecTable[num] + frecTable[num+1])/2;
+			if(frec == 2280){	// Si es la nota mas aguda
+				frec = 2200;
+			}else
+				frec = (frecTable[num] + frecTable[num+1])/2;
 		}
-		if(soundOn == 1){
+		if(frec != lastFrec){
 			turnOffSound();
 			soundOn = 0;
+			turnOnSound(frec);
+			soundOn = 1;
 		}
-		turnOnSound(frec);
-		soundOn = 1;
-		/*while(i<10000000){
-			i++;
-		}
-		turnOffSound();*/
 	}
 	else{
 		if(soundOn == 1){
@@ -85,6 +94,8 @@ void makeSound(){
 		}
 		soundOn = 0;
 	}
+
+	lastFrec = frec;
 
 }
 
