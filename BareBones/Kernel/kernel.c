@@ -121,11 +121,11 @@ int main()
 	ncPrint("[Finished]");
 
 	ncClear();
-	turnOnSound(5423);
+	/*turnOnSound(5423);
 	while(i<10000000){
 		i++;
 	}
-	turnOffSound();
+	turnOffSound();*/
 
 
 	return 0;
