@@ -8,5 +8,6 @@ uint64_t isAlpha(char);
 uint64_t isNum(char);
 uint64_t isMayus(uint64_t);
 uint64_t shifted();
+uint64_t readChar(void);
 
 #endif

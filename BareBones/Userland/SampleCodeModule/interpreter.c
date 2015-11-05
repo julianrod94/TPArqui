@@ -1,19 +1,13 @@
-#include <stdint.h>
-#define TRUE 1
-#define FALSE 0
-uint64_t syscaller(void);
-uint64_t stringCompare(char* str1, char* str2);
-
-
-// void scanf(char* buffer){
-// 	int i=0;
-// 	uint64_t source;
-// 	while((source = syscaller()) !='\n'){
-// 		buffer[i] = (char) source;
-// 		i++;
-// 	}
-// 	return;
-// }
+#include "interpreter.h"
+void scanf(char* buffer){
+	int i=0;
+	uint64_t source;
+	while((source = sysCaller(READ,-1,-1,-1,-1,-1,-1)) !='\n'){
+		buffer[i] = (char) source;
+		i++;
+	}
+	return;
+}
 
 
 void inputInterpreter(char* message){
