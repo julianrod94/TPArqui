@@ -8,3 +8,4 @@ void turnOffSound(void);
 
 void makeSound();
 uint64_t getVibrato(uint64_t,uint64_t);
+void bend(uint64_t, uint64_t);
