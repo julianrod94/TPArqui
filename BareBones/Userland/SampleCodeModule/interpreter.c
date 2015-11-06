@@ -1,5 +1,5 @@
 #include "interpreter.h"
-void scanf(char* buffer){
+/*void scanf(char* buffer){
 	int i=0;
 	uint64_t source;
 	while((source = sysCaller(READ,-1,-1,-1,-1,-1,-1)) !='\n'){
@@ -7,7 +7,7 @@ void scanf(char* buffer){
 		i++;
 	}
 	return;
-}
+}*/
 
 
 void inputInterpreter(char* message){

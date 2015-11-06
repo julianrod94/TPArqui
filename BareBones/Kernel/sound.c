@@ -56,6 +56,7 @@ void soundHandler(uint64_t mode, uint64_t frequency) {
 
 uint64_t soundOn = 0;
 static uint64_t vibrato = 0;
+uint64_t lastFrec = 0;
 
 void makeSound(){
 	uint64_t num = portRead();
@@ -78,11 +79,13 @@ void makeSound(){
 		if(vibrato){
 			frec = getVibrato(frec,num);
 		}
-	
-		turnOffSound();
-		soundOn = 0;
-		turnOnSound(frec);
+		if(frec != lastFrec && soundOn){
+			bend(lastFrec,frec);
+		}
+		else
+			turnOnSound(frec);
 		soundOn = 1;
+		lastFrec = frec;
 	
 	}
 	else{
@@ -105,4 +108,20 @@ uint64_t getVibrato(uint64_t frec, uint64_t num){
 	else
 		frec = (frecTable[num] + frecTable[num+1])/2;
 	return frec;
+}
+
+void bend(uint64_t from, uint64_t to){
+	int j=0;
+	
+	while(from != to){
+		j = 0;
+		turnOnSound(from);
+		while(j<5000){
+			j++;
+		}
+		if(from > to)
+			from--;
+		else
+			from++;
+	}
 }

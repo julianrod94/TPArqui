@@ -145,7 +145,7 @@ out 43h, al
 
 mov rax, rdi        ; Copies the parameter value to rax (the frequency)
 
-mov ax, 4560
+
 out 42h, al         ; Output low byte.
 mov al, ah
 out 42h, al         ; Output high byte.
