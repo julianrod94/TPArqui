@@ -60,7 +60,7 @@ void read(uint64_t fileDescriptor, uint64_t buffer, uint64_t size, uint64_t arg4
 		case TIMER:
 			readfromTimer((long *) buffer);
 			break;
-		default
+		default:
 			;
 	}
 	return;
