@@ -4,8 +4,7 @@
 #include <handlers.h>
 #include <keyboard.h>
 
-static unsigned char kbdus[128] =
-	{
+static unsigned char kbdus[128] = {
     0,  27, '1', '2', '3', '4', '5', '6', '7', '8',	/* 9 */
   '9', '0', '-', '=', '\b',	/* Backspace */
   '\t',			/* Tab */
@@ -87,7 +86,7 @@ static unsigned char Skbdus[128] =
 static uint64_t blockMayus = 0;
 static uint64_t leftShift = 0;
 static uint64_t rightShift = 0;
-static char buffer[256]={0};
+static char buffer[256]= { 0 };
 static char shiftChars[]={'!','@','#','$','%','^','&','*','(',')'};
 static uint64_t enQueueIndex = 0;
 static uint64_t deQueueIndex = 0;
@@ -123,21 +122,17 @@ void myKeyboard(){
 }
 
 uint64_t isAlpha(char c){
-	if(c >= 'a' && c <= 'z'){
-		return 1;
-	}
-	return 0;
+
+  return ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'))
 }
 
 uint64_t isNum(char c){
-	if(c >= '0' && c <= '9'){
-		return 1;
-	}
-	return 0;
+	
+  return (c >= '0' && c <= '9')
 }
 
 
-uint64_t readChar(void){
+char readChar(void){
 	if(enQueueIndex == deQueueIndex){
 		return 0;
 	}
