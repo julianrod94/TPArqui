@@ -1,4 +1,5 @@
 #include <syscalls.h>
+#include <types.h>
 #include <keyboard.h>
 #include <naiveConsole.h>
 #include <sound.h>
