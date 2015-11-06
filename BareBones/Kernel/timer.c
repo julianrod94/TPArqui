@@ -4,7 +4,7 @@
 
 static long ticks = 0;
 
-void tick() {
+void tick(void) {
 	ticks++;
 }
 

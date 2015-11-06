@@ -123,12 +123,12 @@ void myKeyboard(){
 
 uint64_t isAlpha(char c){
 
-  return ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'))
+  return ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'));
 }
 
 uint64_t isNum(char c){
 	
-  return (c >= '0' && c <= '9')
+  return (c >= '0' && c <= '9');
 }
 
 
