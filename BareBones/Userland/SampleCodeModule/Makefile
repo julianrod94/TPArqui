@@ -4,18 +4,18 @@ MODULE=0000-sampleCodeModule.bin
 ASMSOURCES=$(wildcard *.asm)
 SOURCES=$(wildcard *.c)
 ASMOBJECTS=$(ASMSOURCES:.asm=.o)
-all: $(MODULE)
+COBJECTS=$(SOURCES:.c=.o)
 
-$(MODULE): $(SOURCES) $(ASMOBJECTS)
-	$(ASM) $(ASMFLAGS) $(ASMSOURCES)
-	$(GCC) $(GCCFLAGS) -T sampleCodeModule.ld $(SOURCES) -o ../$(MODULE)
+%.o: %.c
+	$(GCC) -c $(GCCFLAGS) $< -o $@
 
-
-$(ASMOBJECTS) : $(ASMSOURCES)
-	
-	
-%.o : %.asm
+%.o: %.asm
 	$(ASM) $(ASMFLAGS) $< -o $@
+
+all: $(USER)
+
+$(USER): $(ASMOBJECTS) $(COBJECTS)
+	$(LD) -T sampleCodeModule.ld $(ASMOBJECTS) $(COBJECTS) -o ../$(MODULE)
 
 clean:
 	rm -rf *.o
