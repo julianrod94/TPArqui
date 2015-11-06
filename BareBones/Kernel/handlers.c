@@ -16,8 +16,8 @@ static void (*syscalls[2]) (uint64_t, uint64_t, uint64_t, uint64_t, uint64_t, ui
 
 void irqDispatcher(dword irq, dword syscall) {
 
-	interrupts[0] = int08
-	interrupts[1] = int09
+	interrupts[0] = int08;
+	interrupts[1] = int09;
 
 	interrupts[irq]();
 	return;
