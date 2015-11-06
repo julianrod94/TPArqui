@@ -60,7 +60,8 @@ void read(uint64_t fileDescriptor, uint64_t buffer, uint64_t size, uint64_t arg4
 		case TIMER:
 			readfromTimer((long *) buffer);
 			break;
-		default:
+		default
+			;
 	}
 	return;
 }
@@ -77,6 +78,7 @@ void write(uint64_t fileDescriptor, uint64_t buffer, uint64_t size, uint64_t aux
 			printInSpk((unsigned short) aux1);
 			break;
 		default:
+			;
 	}
 	return;
 
