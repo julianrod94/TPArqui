@@ -4,32 +4,48 @@
 #include <handlers.h>
 #include <keyboard.h>
 #include <sound.h>
+#include <timer.h>
+#include <syscalls.h>
 
-void irqDispatcher(dword irq, dword syscall){	
-	switch(irq) {
-		case 0:
-			int08();
-			break;
-		case 1:
-			int09();
-			break;
-	}
+
+
+static void (*interrupts[2])(void);
+static void (*syscalls[2]) (uint64_t, uint64_t, uint64_t, uint64_t, uint64_t);
+
+
+
+void irqDispatcher(dword irq, dword syscall) {
+
+	interrupts[0] = int08;
+	interrupts[1] = int09;
+
+	interrupts[irq]();
 	return;
 }
 
 
-void int08(){
-	
+void int08(void){
+	tick();
 }
 
-void int09(){
-	int i = 0;
-	/*turnOnSound(5423);
-	while(i<10000000){
-		i++;
-	}
-	turnOffSound();*/
-	makeSound();
-	//myKeyboard();
+void int09(void){
+	myKeyboard();
 }
+
+
+
+void handler(uint64_t syscallId, uint64_t arg1, uint64_t arg2, uint64_t arg3, uint64_t arg4, uint64_t arg5) {
+
+	syscalls[0] = read;
+	syscalls[1] = write;
+
+	syscalls[syscallId](arg1, arg2, arg3, arg4, arg5);
+	return;
+
+}
+
+
+
+
+
 

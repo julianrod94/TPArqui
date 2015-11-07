@@ -4,8 +4,7 @@
 #include <handlers.h>
 #include <keyboard.h>
 
-static unsigned char kbdus[128] =
-	{
+static unsigned char kbdus[128] = {
     0,  27, '1', '2', '3', '4', '5', '6', '7', '8',	/* 9 */
   '9', '0', '-', '=', '\b',	/* Backspace */
   '\t',			/* Tab */
@@ -43,6 +42,7 @@ static unsigned char kbdus[128] =
     0,	/* F12 Key */
     0,	/* All other keys are undefined */
 };
+
 static unsigned char Skbdus[128] =
 	{
     0,  27, '!', '@', '#', '$', '%', '^', '&', '*',	/* 9 */
@@ -87,66 +87,80 @@ static unsigned char Skbdus[128] =
 static uint64_t blockMayus = 0;
 static uint64_t leftShift = 0;
 static uint64_t rightShift = 0;
-static char buffer[256]={0};
-static char shiftChars[]={'!','@','#','$','%','^','&','*','(',')'};
+static char buffer[256] = { 0 };
+static char shiftChars[] = {'!','@','#','$','%','^','&','*','(',')'};
 static uint64_t enQueueIndex = 0;
 static uint64_t deQueueIndex = 0;
 
-void myKeyboard(){
+void myKeyboard(void) {
+
+     if (enQueueIndex == deQueueIndex) {
+        return; // If the buffer is full, key must not be saved
+    }
+
 	uint64_t num = portRead();
+    char c;
+    if (num < 128) {
+    	
+        c = kbdus[num];
+        uint64_t mayus = isMayus(num);
 
-	if(num >= 128){
-		buffer[enQueueIndex] =(char) 128;  //el char 128 simboliza el evento de soltar una tecla
-		enQueueIndex++;
-		return;
-	}
+        if (c != 0) { // If it is in the table, and it's not a zero, it is printed
+        		
+            if (mayus && isAlpha(c)) {
+                c = c + ('A'-'a');
+        	}
 
-	char c = kbdus[num];
-	uint64_t mayus = isMayus(num);
+    		if (isNum(c) && shifted()) {
+    			c = shiftChars[c - '0' - 1];
+    		}
 
-	if(c != 0){		// Si esta en la tabla y no es 0, imprime
-		if(mayus && isAlpha(c)){
-			c = c + ('A'-'a');
-		}
-		if(isNum(c) && shifted()){
-			c = shiftChars[c - '0' - 1];
-		}
-		if((enQueueIndex<254 && enQueueIndex + 1 != deQueueIndex) || (enQueueIndex== 255 && deQueueIndex != 0)){	
-			buffer[enQueueIndex] = c;
-			enQueueIndex++;
-		}
-		if(c == '\n')
-			ncNewline();
-		ncPrintChar(c);
-	}
-	//ncPrintDec(num);
+        
+        }
+    } else {
+        c = (char) 128;
+    }
+
+    buffer[enQueueIndex] = c;
+    
+    if (enQueueIndex == 255) {
+        enQueueIndex = 0;
+    } else {
+        enQueueIndex++;
+    }
+
+	if(c == '\n')
+		ncNewline();
+	ncPrintChar(c);
+
 }
 
 uint64_t isAlpha(char c){
-	if(c >= 'a' && c <= 'z'){
-		return 1;
-	}
-	return 0;
+
+  return ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'));
 }
 
 uint64_t isNum(char c){
-	if(c >= '0' && c <= '9'){
-		return 1;
-	}
-	return 0;
+	
+  return (c >= '0' && c <= '9');
 }
 
 
-uint64_t readChar(void){
-	if(enQueueIndex == deQueueIndex){
+char readChar(void){
+	
+    if (enQueueIndex == deQueueIndex) {
 		return 0;
 	}
-	if(deQueueIndex == 0){
-		deQueueIndex = 255;
-		return buffer[0];
-	}
 
-	return buffer[deQueueIndex--];
+    char result = buffer[deQueueIndex];
+
+	if (deQueueIndex == 255) {
+        deQueueIndex = 0;
+    } else {
+        deQueueIndex++;
+    }
+
+    return result;
 }
 
 
