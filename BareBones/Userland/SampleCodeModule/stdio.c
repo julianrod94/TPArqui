@@ -20,11 +20,11 @@ void putchar(char c) {
 void printf(char * fmt, ...) {
 
 	va_list ap;
-    int i, j, flag = 0; // Manages the format string parse
+    int i, j = 0, flag = 0; // Manages the format string parse
     char result[256]; // local buffer
-
+	
+	va_start(ap, fmt);
     for (i = 0 ; fmt[i] != 0 ; i++) {
-        
         if (flag) {
         	switch (fmt[i]) {
                 
@@ -82,7 +82,6 @@ void printf(char * fmt, ...) {
         }
     }
     va_end(ap);
-
-    write(1, (uint64_t)result, j % 256, 0, 0);
+    write(1, (uint64_t)result, (uint64_t) (j % 256) , 0, 0);
 
 }
