@@ -140,6 +140,6 @@ portRead:
 syscallHandler:
 
     call handler
-    iret
+    iretq
 
 
