@@ -1,25 +1,19 @@
 #include "interpreter.h"
-/*void scanf(char* buffer){
-	int i=0;
-	uint64_t source;
-	while((source = sysCaller(READ,-1,-1,-1,-1,-1,-1)) !='\n'){
-		buffer[i] = (char) source;
-		i++;
-	}
-	return;
-}*/
 
 
 void inputInterpreter(char* message){
 	if(stringCompare(message,"man")){
-	//	showHelp();
+		showHelp();
 		return;
 	}
 	if(stringCompare(message,"piano")){
-	//	startPiano();
+		startPiano();
 		return;
 	}
-	//ncPrint("Command not found, try 'help'");
+	if(stringCompare(message,"beep")){
+		beep();
+	}
+	printf("Command not found, try 'help'");
 	return;
 }
 
@@ -61,7 +55,7 @@ void shellRead(char* buffer){
 void beep(void){
 	return;
 }
-void piano(void){
+void startPiano(void){
 	uint64_t note = 0;
 	while(note=getchar() !='q'){
 
