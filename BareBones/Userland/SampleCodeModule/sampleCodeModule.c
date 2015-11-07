@@ -16,8 +16,12 @@ void * memset(void * destiny, int32_t c, uint64_t length);
 int main() {
 	//Clean BSS
 	memset(&bss, 0, &endOfBinary - &bss);
-	
-	putchar('H');
+	char d = 0;
+	char c = getchar();
+	while (d != 10) {
+		d = getchar();
+	}
+	putchar(c);
 	
 	//Test if BSS is properly set up
 	if (var1 == 0 && var2 == 0)
