@@ -1,0 +1,28 @@
+global loader
+extern main
+extern initializeKernelBinary
+
+loader:
+	call initializeKernelBinary	; Set up the kernel binary, and get thet stack address
+	mov rsp, rax				; Set up the stack with the returned address
+
+	mov al, 182         ;Prepares the speaker
+out 43h, al 
+
+mov rax, rdi        ; Copies the parameter value to rax (the frequency)
+
+
+out 42h, al         ; Output low byte.
+mov al, ah
+out 42h, al         ; Output high byte.
+
+in al, 61h
+or al, 3            ; Set bits 1 and 0. (Both last bits must be set to 1)
+out 61h, al         ; Send new value.
+
+	call main
+	jmp 0x400000
+
+hang:
+	hlt							; halt machine should kernel return
+	jmp hang
