@@ -92,28 +92,30 @@ static char shiftChars[] = {'!','@','#','$','%','^','&','*','(',')'};
 static uint64_t enQueueIndex = 0;
 static uint64_t deQueueIndex = 0;
 
-void myKeyboard(){
+void myKeyboard(void) {
+
+     if (enQueueIndex == deQueueIndex) {
+        return; // If the buffer is full, key must not be saved
+    }
 
 	uint64_t num = portRead();
-
+    char c;
     if (num < 128) {
     	
-        char c = kbdus[num];
-    	uint64_t mayus = isMayus(num);
+        c = kbdus[num];
+        uint64_t mayus = isMayus(num);
 
-    	if(c != 0) { // If it is in the table, and it's not a zero, it is printed
-    		
-            if(mayus && isAlpha(c)){
-    			c = c + ('A'-'a');
-    		}
+        if (c != 0) { // If it is in the table, and it's not a zero, it is printed
+        		
+            if (mayus && isAlpha(c)) {
+                c = c + ('A'-'a');
+        	}
 
-    		if(isNum(c) && shifted()){
+    		if (isNum(c) && shifted()) {
     			c = shiftChars[c - '0' - 1];
     		}
 
-            if (enQueueIndex == deQueueIndex) {
-                return; // If the buffer is full, key must not be saved
-            }
+        
         }
     } else {
         c = (char) 128;
