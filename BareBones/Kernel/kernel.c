@@ -135,3 +135,5 @@ void setup_IDT_entry(uint16_t index, uint16_t selector, uint64_t offset, uint8_t
 	idt[index].offset_h = (offset >> 32) & 0xFFFFFFFF;
 	
 }
+
+

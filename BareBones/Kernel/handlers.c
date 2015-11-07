@@ -10,7 +10,7 @@
 
 
 static void (*interrupts[2])(void);
-static void (*syscalls[2]) (uint64_t, uint64_t, uint64_t, uint64_t, uint64_t, uint64_t);
+static void (*syscalls[2]) (uint64_t, uint64_t, uint64_t, uint64_t, uint64_t);
 
 
 
@@ -34,12 +34,12 @@ void int09(void){
 
 
 
-void handler(uint64_t syscallId, uint64_t arg1, uint64_t arg2, uint64_t arg3, uint64_t arg4, uint64_t arg5, uint64_t arg6) {
+void handler(uint64_t syscallId, uint64_t arg1, uint64_t arg2, uint64_t arg3, uint64_t arg4, uint64_t arg5) {
 
 	syscalls[0] = read;
 	syscalls[1] = write;
 
-	syscalls[syscallId](arg1, arg2, arg3, arg4, arg5, arg6);
+	syscalls[syscallId](arg1, arg2, arg3, arg4, arg5);
 	return;
 
 }

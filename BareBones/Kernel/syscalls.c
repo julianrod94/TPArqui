@@ -50,7 +50,7 @@ static void printInSpk(unsigned short freq) {
 
 
 
-void read(uint64_t fileDescriptor, uint64_t buffer, uint64_t size, uint64_t arg4, uint64_t arg5, uint64_t arg6) {
+void read(uint64_t fileDescriptor, uint64_t buffer, uint64_t size, uint64_t aux1, uint64_t aux2) {
 
 	switch (fileDescriptor) {
 
@@ -67,7 +67,7 @@ void read(uint64_t fileDescriptor, uint64_t buffer, uint64_t size, uint64_t arg4
 }
 
 
-void write(uint64_t fileDescriptor, uint64_t buffer, uint64_t size, uint64_t aux1, uint64_t arg5, uint64_t arg6) {
+void write(uint64_t fileDescriptor, uint64_t buffer, uint64_t size, uint64_t aux1, uint64_t aux2) {
 
 	switch (fileDescriptor) {
 
