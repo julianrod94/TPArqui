@@ -75,7 +75,7 @@ void printf(char * fmt, ...) {
             } else {
                 result[j++] = fmt[i];
                 if (j == 256) {
-                	write(1, (uint64_t)result, 256, 0, 0);
+                	write(1, result, 256, 0, 0);
                 	j = 0;
                 }
             }
