@@ -3,7 +3,6 @@
 #include <lib.h>
 #include <moduleLoader.h>
 #include <naiveConsole.h>
-#include <Handler.h>
 #include <handlers.h>
 #include <sound.h>
 
