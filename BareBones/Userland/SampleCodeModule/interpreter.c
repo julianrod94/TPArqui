@@ -11,7 +11,7 @@
 
 
 void inputInterpreter(char* message){
-	if(stringCompare(message,"help")){
+	if(stringCompare(message,"man")){
 	//	showHelp();
 		return;
 	}
@@ -37,4 +37,34 @@ uint64_t stringCompare(char* str1, char* str2){
 		return FALSE;
 	}
 	return TRUE;
+}
+
+void showHelp(void){
+	printf("Este sistema operativo dispone de los siguientes comandos: \n");
+	printf("man: este comando muestra el manual de usuario del sistema operativo\n");
+	printf("piano: este comando inicia el programa \"piano\" el cual se podra utilizar como el instrumento musical\n");
+	printf("printf: este comando imprimira en pantalla la cadena de caracteres que se ingresa luego del comando\n");
+	printf("beep: este comando hace sonar el pcspeaker con un sonido de corta duracion\n");
+
+void shellRead(char* buffer){
+	uint64_t character = 0;
+	int i = 0;
+	while(character = getchar()!='\n' && i<255){
+		if(character!=0){
+			buffer[i] = (char) character;
+			i++;
+			putchar(character);
+		}
+	}
+	return;
+}
+void beep(void){
+	return;
+}
+void piano(void){
+	uint64_t note = 0;
+	while(note=getchar() !='q'){
+
+	}
+	return;
 }
