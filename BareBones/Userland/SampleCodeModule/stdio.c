@@ -4,8 +4,15 @@
 
 #define SYMBOL_ERROR "\n\nError! Simbolo no reconocido. Abortando...\n"
 
+char getchar(void) {
+
+	char c;
+	read(0, &c, 1, 0, 0);
+}
+
 void putchar(char c) {
 
+	write(1, &c, 1, 0, 0);
 }
 
 void printf(char * fmt, ...) {
