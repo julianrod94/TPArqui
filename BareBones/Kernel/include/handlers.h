@@ -1,6 +1,6 @@
 #ifndef HANDLERS_H
 #define HANDLERS_H
-//#include <types.h>
+#include <types.h>
 #define READ 0
 #define WRITE 1
 #define SOUND 2
