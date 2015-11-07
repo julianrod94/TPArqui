@@ -21,7 +21,7 @@ void printf(char * fmt, ...) {
                 
                 case 'd': {
                     int num, figures;
-                    num va_arg(ap, int);
+                    num = va_arg(ap, int);
                     figures = digits(num);
                     
                     while (figures) {
