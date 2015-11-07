@@ -1,4 +1,8 @@
+#include "syscallwrappers.h"
 #include <stdarg.h>
+#include "math.h"
+
+#define SYMBOL_ERROR "\n\nError! Simbolo no reconocido. Abortando...\n"
 
 void putchar(char c) {
 
@@ -47,8 +51,12 @@ void printf(char * fmt, ...) {
                     }
                     break;
                 }
-                default:
-                    exit(1);
+                default: {
+                	const char * error = SYMBOL_ERROR;
+                	write(1, error, sizeof(SYMBOL_ERROR), 0, 0);
+                	break;
+                }
+                    
             }
             flag = 0;
             
