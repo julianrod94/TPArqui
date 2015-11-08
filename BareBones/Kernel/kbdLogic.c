@@ -1,3 +1,5 @@
+#include <stdint.h>
+
 #define BREAK_CODE 0
 #define NUMBER 1
 #define LETTER 2
@@ -110,6 +112,7 @@ int analizeScanCode(uint64_t code) {
     }
     return OTHER;
 }
+
 
 char getCharFromKbd() {
 
