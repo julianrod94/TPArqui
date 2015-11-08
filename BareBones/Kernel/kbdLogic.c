@@ -54,7 +54,7 @@ static unsigned char shiftedKbdTable[128] = {
     0,  /* 29   - Control */
     'A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L', ':', '\"', '~',
     0,  /* Left shift */
-    '\\', 'Z', 'X', 'C', 'V', 'B', 'N', 'M', '<', '>', '?',
+    '|', 'Z', 'X', 'C', 'V', 'B', 'N', 'M', '<', '>', '?',
     0,  /* Right shift */
     0,  /*PrtScr*/
     0,  /* Alt */
@@ -117,8 +117,8 @@ char getCharFromKbd() {
     switch(flag) {
 
         case NUMBER: {
-            int symbols = ((shift != 0)? 1 : 0) - numLock; /* XOR operation */
-            if (symbols) {
+            int numbers = ((shift != 0)? 1 : 0) - numLock; /* XOR operation */
+            if (numbers) {
                 result = shiftedKbdTable[code];
             } else {
                 result = kbdTable[code];
