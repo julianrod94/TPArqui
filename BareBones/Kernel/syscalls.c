@@ -11,7 +11,7 @@ static void readFromKbd(char * buffer, uint64_t size) {
 	int i = 0;
 	while (i < size) {
 		char c = readChar();
-		if (char == -1) {
+		if (c == -1) {
 			_hlt();
 		}
 		buffer[i++] = c;
