@@ -23,8 +23,6 @@ static int dequeueIdx = 0;
 
 void keyboardISR(void) {
 
-	uint64_t num;
-
 	if (bufferSize == SIZE) {
 		return; // If the buffer is full, nothing should be saved
 	}

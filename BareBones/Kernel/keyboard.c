@@ -55,9 +55,9 @@ static unsigned char Skbdus[128] =
  '\"', '`',   0,		/* Left shift */
  '\\', 'Z', 'X', 'C', 'V', 'B', 'N',			/* 49 */
   'M', '<', '>', '?',   0,				/* Right shift */
-  '*',
+    0,  /*PrtScr*/
     0,	/* Alt */
-  ' ',	/* Space bar */
+    ' ',	/* Space bar */
     0,	/* Caps lock */
     0,	/* 59 - F1 key ... > */
     0,   0,   0,   0,   0,   0,   0,   0,
