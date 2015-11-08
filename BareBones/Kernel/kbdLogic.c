@@ -88,7 +88,7 @@ static unsigned char shiftedKbdTable[128] = {
 static int analizeScanCode(uint64_t code) {
 
     
-    if (code >= 2 && code <= 12) {
+    if (code >= 2 && code <= 11) {
         return NUMBER;
     }
     if ( (code >= 16 && code <= 25) || (code >= 30 && code <= 38) || (code >= 44 && code <= 50) ) {
