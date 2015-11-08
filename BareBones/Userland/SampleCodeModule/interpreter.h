@@ -7,3 +7,7 @@
 void scanf(char* buffer);
 void inputInterpreter(char* message);
 uint64_t stringCompare(char* str1, char* str2);
+void showHelp(void);
+void shellRead(char* buffer);
+void beep(void);
+void startPiano(void);
