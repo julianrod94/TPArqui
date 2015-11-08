@@ -6,7 +6,11 @@
 #include <timer.h>
 
 
-static void readFromKbd(char * buffer, uint64_t size) {
+/* Read from keyboard with no print
+ * Read syscall by using keyboard (stdin) as file descriptor
+ * and 1 as aux arg1
+ */
+static void readFromKbdNoPrint(char * buffer, uint64_t size) {
 
 	int i = 0;
 	char c;
@@ -22,11 +26,52 @@ static void readFromKbd(char * buffer, uint64_t size) {
 	return;
 }
 
-static void readfromTimer(long * result) {
+
+/* Read from keyboard with print
+ * Read syscall by using keyboard (stdin) as file descriptor
+ * and 2 as aux arg1
+ */
+static void readFromKbdPrint(char * buffer, uint64_t size) {
+
+	int i = 0;
+	char c;
+	
+	while (i < size) {
+		c = getCharFromKbd();
+		if (c == -1){
+			_hlt();
+		} else {
+			buffer[i++] = c;
+			ncPrintChar(c);
+		}
+	}
+	return;
+}
+
+
+
+/* Read Ticks:
+ * Read syscall by using timer as file descriptor
+ * and 1 as aux arg 1
+ */
+static void readTicksfromTimer(long * result) {
 
 	result[0] = getTicks();
 	return;
 }
+
+/* Read Frequency:
+ * Read syscall by using timer as file descriptor
+ * and 2 as aux arg 1
+ */
+static void readFreqfromTimer(double * result) {
+
+	result[0] = getFrequency();
+	return;
+}
+
+
+
 
 
 static void printInVideo(char * buffer, uint64_t size) {
@@ -63,13 +108,25 @@ void read(uint64_t fileDescriptor, uint64_t buffer, uint64_t size, uint64_t aux1
 	switch (fileDescriptor) {
 
 		case STDIN:
-			readFromKbd((char *) buffer, size);
+			switch (aux1) {
+				case 1:
+					readFromKbdNoPrint((char *) buffer, size);
+					break;
+				case 2:
+					readFromKbdPrint((char *) buffer, size);
+					break;
+			}
 			break;
 		case TIMER:
-			readfromTimer((long *) buffer);
+			switch (aux1) {
+				case 1: 
+					readfromTimer((long *) buffer);
+					break;
+				case 2:
+					readFreqfromTimer((double *) buffer);
+					break;
+			}		
 			break;
-		default:
-			;
 	}
 	return;
 }
