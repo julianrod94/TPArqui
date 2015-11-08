@@ -13,5 +13,6 @@ void ncPrintBase(uint64_t value, uint32_t base);
 void ncClear();
 void ncBackSpace();
 void shiftLines();
+void ncTab();
 
 #endif
