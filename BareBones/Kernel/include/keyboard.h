@@ -1,7 +1,7 @@
 #ifndef KEYBOARD_H
 #define KEYBOARD_H
 
-uint64_t dequeueKey(void)
+uint64_t dequeueKey(void);
 
 void myKeyboard();
 uint64_t isAlpha(char);
