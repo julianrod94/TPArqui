@@ -90,6 +90,10 @@ void ncBackSpace(){
 	position = (video - currentVideo)/2;
 }
 
+ncTab(){
+	ncPrint("    ");
+}
+
 void ncClear()
 {
 	int i;
