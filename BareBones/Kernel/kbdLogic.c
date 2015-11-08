@@ -158,9 +158,8 @@ char getCharFromKbd() {
             break;
         }
         case SHIFT:
-            shift = 1;
+            shift = !shift;
             result = getCharFromKbd();
-            shift = 0;
             break;
         case CAPSLOCK:
             capsLock = !capsLock;
