@@ -32,10 +32,18 @@ void ncPrintChar(char character)
 		currentVideo -= width * 2;
 	}
 
+	if (character == '\b') {
+		currentVideo -= 2;
+		*currentVideo = ' ';
+	} else if (character == '\t') {
+		currentVideo += 2*4;
+	} else {
+		*currentVideo = character;
+		currentVideo += 2;
+		position = (video - currentVideo)/2;
+	}
 
-	*currentVideo = character;
-	currentVideo += 2;
-	position = (video - currentVideo)/2;
+	
 }
 
 void ncNewline()
