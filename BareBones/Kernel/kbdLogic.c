@@ -96,7 +96,7 @@ static int analizeScanCode(uint64_t code) {
     }
     if (code == 1 || code == 12 || code == 13 || code == 14 || code == 15
         || code == 26 || code == 27 || code == 28 || code == 39 || code == 40
-        || code == 41 || code == 51 || code == 52 || code == 53 || code == 57) {
+        || code == 41 || code == 43 || code == 51 || code == 52 || code == 53 || code == 57) {
         return SYMBOL;
     }
     return OTHER;
