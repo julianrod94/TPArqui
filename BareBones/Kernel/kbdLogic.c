@@ -1,4 +1,5 @@
 #include <stdint.h>
+#include <keyboard.h>
 
 #define BREAK_CODE 0
 #define NUMBER 1
@@ -92,13 +93,13 @@ static unsigned char shiftedKbdTable[128] = {
 int analizeScanCode(uint64_t code) {
 
     
-     if (code > 128) {
+    if (code > 128) {
         return BREAK_CODE;
     }
     if (code >= 2 && code <= 12) {
         return NUMBER;
     }
-    if ( (code >= 16 && code <= 25) || (code >= 30 && code <= 38) || (code >= 44 && code <= 50) {
+    if ( (code >= 16 && code <= 25) || (code >= 30 && code <= 38) || (code >= 44 && code <= 50) ) {
         return LETTER;
     }
     if (code == 42 || code == 54) {
@@ -123,7 +124,7 @@ char getCharFromKbd() {
     switch(flag) {
         case BREAK_CODE:
             break;
-        case NUMBER:
+        case NUMBER: {
             int symbols = shift - capsLock; /* XOR operation */
             if (symbols) {
                 result = shiftedKbdTable[code];
@@ -131,7 +132,8 @@ char getCharFromKbd() {
                 result = kbdTable[code];
             }
             break;
-        case LETTER:
+        }
+        case LETTER: {
             int maysuc = shift - capsLock; /* XOR operation */
             if (maysuc) {
                 result = shiftedKbdTable[code];
@@ -139,6 +141,7 @@ char getCharFromKbd() {
                 result = kbdTable[code];
             }
             break;
+        }
         case SHIFT:
             shift = 1;
             result = getCharFromKbd();
