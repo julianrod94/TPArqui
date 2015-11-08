@@ -35,6 +35,7 @@ void keyboardISR(void) {
 		capsLock = !capsLock;
 	} else if (scanCode == 69) {
         numLock = !numLock;
+
     }
 
     buffer[enqueueIdx++] = scanCode;

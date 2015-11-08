@@ -16,19 +16,16 @@ static char buffer[256]={0};
 void * memset(void * destiny, int32_t c, uint64_t length);
 
 int main() {
+	
 	//Clean BSS
 	memset(&bss, 0, &endOfBinary - &bss);
 	
-	//Test if BSS is properly set up
-	if (var1 == 0 && var2 == 0)
-		return 0xDEADC0DE;
-	
-	while(1){
-		shellRead(&buffer[0]);
-		
+
+	printf("Ingrese texto: ");
+	while(1) {	
+		char c = getchar();
+		putchar(c);
 	}
-	return 0xDEADBEEF;
-}
 
 void * memset(void * destiation, int32_t c, uint64_t length) {
 	uint8_t chr = (uint8_t)c;

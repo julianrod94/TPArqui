@@ -1,6 +1,6 @@
 #include <interrupts.h>
 #include <syscalls.h>
-#include <kbdLogic.h>
+#include <keyboard.h>
 #include <naiveConsole.h>
 #include <sound.h>
 #include <timer.h>
@@ -12,12 +12,12 @@ static void readFromKbd(char * buffer, uint64_t size) {
 	char c;
 	
 	while (i < size) {
-		c = getCharFromKbd();
-		if (c == -1){
-			_hlt();
-		} else {
-			buffer[i++] = c;
-		}
+		do {
+			c = readChar();
+			if (c == -1){
+				_hlt();
+		} while (c == -1);
+		buffer[i++] = c;
 	}
 	return;
 }

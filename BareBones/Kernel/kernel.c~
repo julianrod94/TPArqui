@@ -15,7 +15,7 @@ extern uint8_t data;
 extern uint8_t bss;
 extern uint8_t endOfKernelBinary;
 extern uint8_t endOfKernel;
-uint64_t syscallHandler(uint64_t syscallId, uint64_t arg1, uint64_t arg2, uint64_t arg3, uint64_t arg4, uint64_t arg5, uint64_t arg6);
+uint64_t syscallHandler(uint64_t syscallId, uint64_t arg1, uint64_t arg2, uint64_t arg3, uint64_t arg4, uint64_t arg5);
 
 static const uint64_t PageSize = 0x1000;
 IDT_entry *idt=(IDT_entry*)0;
@@ -89,6 +89,7 @@ void * initializeKernelBinary()
 
 int main()
 {	
+
 	
 	setup_IDT_entry(0x20, 0x8,(uint64_t) &_irq00Handler, 0x8E);	
 	setup_IDT_entry(0x21, 0x8, (uint64_t)&_irq01Handler, 0x8E);
@@ -105,6 +106,7 @@ int main()
 	ncPrint("  Sample code module at 0x");
 	ncPrintHex((uint64_t)sampleCodeModuleAddress);
 	ncNewline();
+	
 	ncPrint("  Calling the sample code module returned: ");
 	ncPrintHex(((EntryPoint)sampleCodeModuleAddress)());
 	ncNewline();
@@ -119,7 +121,7 @@ int main()
 
 	ncPrint("[Finished]");
 
-	//while(1);
+	while(1);
 
 	ncClear();
 
