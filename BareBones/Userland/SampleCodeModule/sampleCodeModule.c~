@@ -1,5 +1,6 @@
 #include <stdint.h>
 #include "stdio.h"
+#include "time.h"
 
 
 char * v = (char*)0xB8000 + 79 * 2;
@@ -18,13 +19,13 @@ int main() {
 	//Clean BSS
 	memset(&bss, 0, &endOfBinary - &bss);
 	
-	
+	printf("Hola");
+	sleep(5000);
 	printf("Ingrese texto: ");
 	while(1) {	
-		char c = getchar();
-		putchar(c);
+		//char c = getchar();
+		//putchar(c);
 	}
-	while(1);
 
 	//Test if BSS is properly set up
 	if (var1 == 0 && var2 == 0)
