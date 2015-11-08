@@ -1,3 +1,4 @@
+#include <interrupts.h>
 #include <syscalls.h>
 #include <keyboard.h>
 #include <naiveConsole.h>

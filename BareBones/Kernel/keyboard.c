@@ -149,7 +149,7 @@ uint64_t isNum(char c){
 char readChar(void){
 	
     if (enQueueIndex == deQueueIndex) {
-		return 0;
+		return -1;
 	}
 
     char result = buffer[deQueueIndex];

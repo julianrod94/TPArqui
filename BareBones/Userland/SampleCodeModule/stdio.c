@@ -31,7 +31,7 @@ void printf(char * fmt, ...) {
                 case 'd': {
                     int num, figures;
                     num = va_arg(ap, int);
-                    figures = digits(num);
+                    figures = decimalDigits(num);
                     
                     while (figures) {
                         

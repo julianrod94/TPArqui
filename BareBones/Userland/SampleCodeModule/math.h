@@ -1,3 +1,3 @@
 
 int ipow(int base, int exp);
-int digits(int number);
+int decimalDigits(int number);
