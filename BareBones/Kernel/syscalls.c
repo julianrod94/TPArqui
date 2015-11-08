@@ -120,7 +120,7 @@ void read(uint64_t fileDescriptor, uint64_t buffer, uint64_t size, uint64_t aux1
 		case TIMER:
 			switch (aux1) {
 				case 1: 
-					readfromTimer((long *) buffer);
+					readTicksfromTimer((long *) buffer);
 					break;
 				case 2:
 					readFreqfromTimer((double *) buffer);
