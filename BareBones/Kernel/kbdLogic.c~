@@ -129,6 +129,7 @@ char getCharFromKbd() {
             int maysuc = ((shift != 0)? 1 : 0) - capsLock; /* XOR operation */
             if (maysuc) {
                 result = shiftedKbdTable[code];
+		ncPrintDec(shift);
             } else {
                 result = kbdTable[code];
             }

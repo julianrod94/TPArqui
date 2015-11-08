@@ -1,6 +1,7 @@
-keyboard.c:46:22: warning: ‘Skbdus’ defined but not used [-Wunused-variable]
- static unsigned char Skbdus[128] =
-                      ^
+kbdLogic.c: In function ‘getCharFromKbd’:
+kbdLogic.c:111:23: warning: variable ‘numLock’ set but not used [-Wunused-but-set-variable]
+  int shift, capsLock, numLock;
+                       ^
 1+0 registros leídos
 1+0 registros escritos
-1 byte (1 B) copiado, 4,2171e-05 s, 23,7 kB/s
+1 byte (1 B) copiado, 4,1865e-05 s, 23,9 kB/s
