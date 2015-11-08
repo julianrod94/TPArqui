@@ -37,7 +37,9 @@ static void printInVideo(char * buffer, uint64_t size) {
 		char c = buffer[i++];
 		if (c == '\n') {
 			ncNewline();
-		} else {
+		}else if{
+			ncBackSpace();
+		}else {
 			ncPrintChar(c);
 		}
 	}
