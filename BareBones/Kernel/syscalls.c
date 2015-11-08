@@ -10,7 +10,11 @@ static void readFromKbd(char * buffer, uint64_t size) {
 
 	int i = 0;
 	while (i < size) {
-		buffer[i++] = readChar();
+		char c = readChar();
+		if (char == -1) {
+			_hlt();
+		}
+		buffer[i++] = c;
 	}
 	return;
 }

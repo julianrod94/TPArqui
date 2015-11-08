@@ -14,7 +14,7 @@ int ipow(int base, int exp) {
 }
 
 
-int digits(int number) {
+int decimalDigits(int number) {
 
 	int digits = 0;
 	do {
