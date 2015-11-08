@@ -23,8 +23,7 @@ int main() {
 	sleep(5000);
 	printf("Ingrese texto: ");
 	while(1) {	
-		//char c = getchar();
-		//putchar(c);
+		char c = getchar();
 	}
 
 	//Test if BSS is properly set up

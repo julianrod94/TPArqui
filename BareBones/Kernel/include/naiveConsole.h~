@@ -3,7 +3,7 @@
 
 #include <stdint.h>
 
-uint8_t * getCurrentVideo();
+uint8_t * getCurrentVideo()
 void ncPrint(const char * string);
 void ncPrintChar(char character);
 void ncNewline();

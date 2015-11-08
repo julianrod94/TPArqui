@@ -9,7 +9,7 @@ char getchar(void) {
 
 	char c;
     do {
-        read(0, (uint64_t)&c, 1, 1, 0);
+        read(0, (uint64_t)&c, 1, 2, 0);
     } while (c == '\b' || c == '\t');
 	return c;
 }

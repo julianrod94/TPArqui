@@ -71,7 +71,15 @@ static void readFreqfromTimer(double * result) {
 }
 
 
+/* Read Current Video Position:
+ * Read syscall by using video as file descriptor
+ * and 2 as aux arg 1
+ */
+static void readCurrentVideo(uint8_t * buffer) {
 
+	buffer[0] = getCurrentVideo();
+	return;
+}
 
 
 static void printInVideo(char * buffer, uint64_t size) {
@@ -114,6 +122,14 @@ void read(uint64_t fileDescriptor, uint64_t buffer, uint64_t size, uint64_t aux1
 					break;
 				case 2:
 					readFromKbdPrint((char *) buffer, size);
+					break;
+			}
+			break;
+	
+		case STDOUT:
+			switch (aux1) {
+				case 1:
+					readCurrentVideo((uint8_t) buffer);
 					break;
 			}
 			break;

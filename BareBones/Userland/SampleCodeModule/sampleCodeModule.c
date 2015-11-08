@@ -24,7 +24,6 @@ int main() {
 	printf("Ingrese texto: ");
 	while(1) {	
 		char c = getchar();
-		putchar(c);
 	}
 
 	//Test if BSS is properly set up
