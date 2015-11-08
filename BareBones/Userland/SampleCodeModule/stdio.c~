@@ -8,7 +8,7 @@
 char getchar(void) {
 
 	char c;
-	read(0, (uint64_t)&c, 1, 0, 0);
+	read(0, (uint64_t)&c, 1, 1, 0);
 	return c;
 }
 
