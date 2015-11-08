@@ -117,7 +117,7 @@ char getCharFromKbd() {
     switch(flag) {
 
         case NUMBER: {
-            int symbols = ((shift != 0)? 1 : 0) - capsLock; /* XOR operation */
+            int symbols = ((shift != 0)? 1 : 0) - numLock; /* XOR operation */
             if (symbols) {
                 result = shiftedKbdTable[code];
             } else {
