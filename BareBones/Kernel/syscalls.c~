@@ -12,12 +12,12 @@ static void readFromKbd(char * buffer, uint64_t size) {
 	char c;
 	
 	while (i < size) {
-		c = readChar();
-		if (c == -1){
-			_hlt();
-		} else {
-			buffer[i++] = c;
-		}
+		do {
+			c = readChar();
+			if (c == -1){
+				_hlt();
+		} while (c == -1);
+		buffer[i++] = c;
 	}
 	return;
 }

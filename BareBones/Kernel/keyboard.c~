@@ -131,6 +131,8 @@ void myKeyboard(void) {
     } else {
         enQueueIndex++;
     }
+	//ncPrintChar(c);	
+
 }
 
 uint64_t isAlpha(char c){

@@ -1,3 +1,6 @@
+keyboard.c:46:22: warning: ‘Skbdus’ defined but not used [-Wunused-variable]
+ static unsigned char Skbdus[128] =
+                      ^
 1+0 registros leídos
 1+0 registros escritos
-1 byte (1 B) copiado, 2,4664e-05 s, 40,5 kB/s
+1 byte (1 B) copiado, 4,2171e-05 s, 23,7 kB/s

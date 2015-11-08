@@ -3,8 +3,8 @@
 #ifndef INTERRUPTS_H
 #define INTERRUPTS_H
 
-void _irq00Handler();
-void _irq01Handler();
+extern void _irq00Handler();
+extern void _irq01Handler();
 
 //Wrappers de sti, cli y hlt
 void _cli();

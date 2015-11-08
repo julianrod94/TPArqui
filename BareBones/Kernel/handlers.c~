@@ -29,7 +29,7 @@ void int08(void){
 }
 
 void int09(void){
-	myKeyboard();
+	makeSound();
 }
 
 
