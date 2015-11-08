@@ -42,8 +42,6 @@ void ncPrintChar(char character)
 		currentVideo += 2;
 		position = (video - currentVideo)/2;
 	}
-
-	
 }
 
 void ncNewline()

@@ -8,7 +8,9 @@
 char getchar(void) {
 
 	char c;
-	read(0, (uint64_t)&c, 1, 1, 0);
+    do {
+        read(0, (uint64_t)&c, 1, 1, 0);
+    } while (c == '\b' || c == '\t');
 	return c;
 }
 
