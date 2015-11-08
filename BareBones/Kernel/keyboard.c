@@ -5,7 +5,7 @@
 
 #define SIZE 256
 
-static uint64_t buffer[SIZE];
+static uint8_t buffer[SIZE];
 static int bufferSize = 0;
 static int enqueueIdx = 0;
 static int dequeueIdx = 0;
@@ -28,7 +28,7 @@ uint64_t dequeueKey(void) {
     if (bufferSize == 0) {
         return -1; // maybe we could just halt the machine
     }
-    uint64_t result = buffer[dequeueIdx++];
+    uint8_t result = buffer[dequeueIdx++];
     bufferSize--;
     if (dequeueIdx == SIZE) {
         dequeueIdx = 0;
