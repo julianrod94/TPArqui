@@ -1,5 +1,5 @@
 #include <stdint.h>
-#include <keyboard.h>
+#include <newKbd.h>
 
 #define BREAK_CODE 0
 #define NUMBER 1
@@ -90,7 +90,7 @@ static unsigned char shiftedKbdTable[128] = {
 };
 
 
-int analizeScanCode(uint64_t code) {
+static int analizeScanCode(uint64_t code) {
 
     
     if (code > 128) {
