@@ -1,4 +1,4 @@
 
-void tick(void);
+void timerISR(void);
 
 long getTicks(void);

@@ -25,11 +25,11 @@ void irqDispatcher(dword irq, dword syscall) {
 
 
 void int08(void){
-	tick();
+	timerISR();
 }
 
 void int09(void){
-	myKeyboard();
+	keyboardISR();
 }
 
 

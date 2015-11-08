@@ -1,20 +1,9 @@
 #include <types.h>
 #include <interrupts.h>
 #include <handlers.h>
+#include <stdint.h>
 
 #define SIZE 256
-
-/*typedef struct {
-	char buffer[SIZE];
-	int size;
-} tKbdQueue;
-
-static int kbdInit = 0;
-static tKbdQueue kbdQueue;
-
-tKbdQueue newKbdQueue() {
-
-}*/
 
 static uint64_t buffer[SIZE];
 static int bufferSize = 0;
