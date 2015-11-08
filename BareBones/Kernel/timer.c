@@ -13,6 +13,6 @@ long getTicks(void) {
 	return ticks;
 }
 
-long getFrequency() {
+long getFrequency(void) {
 	return fq;
 }
