@@ -12,7 +12,7 @@
  */
 static void readFromKbdNoPrint(char * buffer, uint64_t size) {
 
-	int i = 0;
+	uint32_t i = 0;
 	char c;
 	
 	while (i < size) {
@@ -33,9 +33,8 @@ static void readFromKbdNoPrint(char * buffer, uint64_t size) {
  */
 static void readFromKbdPrint(char * buffer, uint64_t size) {
 
-	int i = 0;
+	uint32_t i = 0;
 	char c;
-	
 	while (i < size) {
 		c = getCharFromKbd();
 		if (c == -1){
@@ -49,12 +48,27 @@ static void readFromKbdPrint(char * buffer, uint64_t size) {
 }
 
 
+void readNote(uint16_t * result) {
+	
+	uint16_t note;
+	do {
+		note = getNoteFromKbd();
+		if (note == -1) {
+			_hlt();
+		} else {
+			result[0] = note;
+		}
+	} while (note == -1);
+	return;
+}
+
+
 
 /* Read Ticks:
  * Read syscall by using timer as file descriptor
  * and 1 as aux arg 1
  */
-static void readTicksfromTimer(long * result) {
+static void readTicksfromTimer(uint64_t * result) {
 
 	result[0] = getTicks();
 	return;
@@ -64,7 +78,7 @@ static void readTicksfromTimer(long * result) {
  * Read syscall by using timer as file descriptor
  * and 2 as aux arg 1
  */
-static void readFreqfromTimer(double * result) {
+static void readFreqfromTimer(uint64_t * result) {
 
 	result[0] = getFrequency();
 	return;
@@ -75,19 +89,19 @@ static void readFreqfromTimer(double * result) {
  * Read syscall by using video as file descriptor
  * and 2 as aux arg 1
  */
-static void readCurrentVideo(uint8_t * buffer) {
+static void readCurrentVideo(uint8_t ** buffer) {
 
 	buffer[0] = getCurrentVideo();
 	return;
 }
 
 
-static void printInVideo(char * buffer, uint64_t size) {
+static void printInVideo(uint8_t * buffer, uint64_t size) {
 
-	int i = 0;
+	uint32_t i = 0;
 
 	while (i < size) {
-		char c = buffer[i++];
+		uint8_t c = buffer[i++];
 		if (c == '\n') {
 			ncNewline();
 		} else {
@@ -98,8 +112,9 @@ static void printInVideo(char * buffer, uint64_t size) {
 }
 
 
-static void printInSpk(unsigned short freq) {
-
+static void printInSpk(uint16_t freq) {
+	
+	ncPrintDec(freq);
 	if (freq == 0) {
 		turnOffSound();
 	} else {
@@ -123,23 +138,26 @@ void read(uint64_t fileDescriptor, uint64_t buffer, uint64_t size, uint64_t aux1
 				case 2:
 					readFromKbdPrint((char *) buffer, size);
 					break;
+				case 3:
+					readNote((uint16_t *) buffer);
+					break;
 			}
 			break;
 	
 		case STDOUT:
 			switch (aux1) {
 				case 1:
-					readCurrentVideo((uint8_t) buffer);
+					readCurrentVideo((uint8_t **) buffer);
 					break;
 			}
 			break;
 		case TIMER:
 			switch (aux1) {
 				case 1: 
-					readTicksfromTimer((long *) buffer);
+					readTicksfromTimer((uint64_t *) buffer);
 					break;
 				case 2:
-					readFreqfromTimer((double *) buffer);
+					readFreqfromTimer((uint64_t *) buffer);
 					break;
 			}		
 			break;
@@ -153,10 +171,10 @@ void write(uint64_t fileDescriptor, uint64_t buffer, uint64_t size, uint64_t aux
 	switch (fileDescriptor) {
 
 		case STDOUT:
-			printInVideo((char *) buffer, size);
+			printInVideo((uint8_t *) buffer, size);
 			break;
 		case SPK:
-			printInSpk( (unsigned short) ( ((uint16_t *)buffer)[0]));
+			printInSpk( (uint16_t) (((uint16_t *)buffer)[0]));
 			break;
 		default:
 			;

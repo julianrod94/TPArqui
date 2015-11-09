@@ -1,6 +1,7 @@
 #include <stdint.h>
 #include <keyboard.h>
 #include <naiveConsole.h>
+#include <interrupts.h>
 
 #define NUMBER 1
 #define LETTER 2
@@ -8,7 +9,7 @@
 #define OTHER 0
 
 
-static unsigned uint8_t kbdTable[128] = {
+static uint8_t kbdTable[128] = {
     0, /* No key for scan code 0 */ 
     27, '1', '2', '3', '4', '5', '6', '7', '8',	'9', '0', '-', '=', '\b',
     '\t', 'q', 'w', 'e', 'r',	't', 'y', 'u', 'i', 'o', 'p', '[', ']', '\n',
@@ -47,7 +48,7 @@ static unsigned uint8_t kbdTable[128] = {
 };
 
 
-static unsigned uint8_t shiftedKbdTable[128] = {
+static uint8_t shiftedKbdTable[128] = {
     0,  /* No key for scan code 0 */
     27, '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '_', '+', '\b',
     '\t', 'Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P', '{', '}', '\n',
@@ -88,7 +89,7 @@ static unsigned uint8_t shiftedKbdTable[128] = {
 static uint16_t notesTable[128] =
     {
     0,  27, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-    0,
+    27,
     9121, 8609, 8126, 7670, 7239, 6833, 6449, 6087, 5746,
     0, 0, 0, 0,
     5423, 5119, 4831, 4560, 4304, 4063, 3834, 3619, 3416,
@@ -163,6 +164,32 @@ char getCharFromKbd() {
     }
     return result;
 }
+
+
+uint16_t getNoteFromKbd() {
+
+    uint8_t code = dequeueKey();
+	//uint8_t code = portRead();
+	uint16_t note = -1;
+	if (code == -1) {
+		return -1;
+	}
+    
+    if (code > 128) {
+        return 0; /* A break code represents a stop sound event */
+    }
+    note = notesTable[code];
+
+    if (note == 27) {
+        return 1; /* There's no note defined for value 1, so we use to represent an exit event */
+    }
+    return note;
+}
+
+
+
+
+
 
 
 

@@ -9,9 +9,20 @@ char getchar(void) {
 
 	char c;
     do {
-        read(0, (uint64_t)&c, 1, 1, 0);
+        read(0, (uint64_t)&c, 1, 2, 0);
     } while (c == '\b' || c == '\t');
 	return c;
+}
+
+void readLine(char * buffer, int size) {
+
+    char c;
+    int i;
+    while ( (c = getchar()) != '\n' && i < size - 1 ) {
+        buffer[i++] = c;
+    }
+    buffer[i] = 0;
+    return;
 }
 
 void putchar(char c) {
@@ -85,7 +96,6 @@ void printf(char * fmt, ...) {
     }
     va_end(ap);
     write(1, (uint64_t)result, (uint64_t) (j % 256) , 0, 0);
-
 }
 
 char* readLine(){

@@ -1,6 +1,8 @@
+#include <stdint.h>
+
 
 void timerISR(void);
 
-long getTicks(void);
+uint64_t getTicks(void);
 
-long getFrequency(void);
+uint64_t getFrequency(void);
