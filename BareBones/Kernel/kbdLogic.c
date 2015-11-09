@@ -8,7 +8,7 @@
 #define OTHER 0
 
 
-static unsigned uint8_t kbdTable[128] = {
+static uint8_t kbdTable[128] = {
     0, /* No key for scan code 0 */ 
     27, '1', '2', '3', '4', '5', '6', '7', '8',	'9', '0', '-', '=', '\b',
     '\t', 'q', 'w', 'e', 'r',	't', 'y', 'u', 'i', 'o', 'p', '[', ']', '\n',
@@ -47,7 +47,7 @@ static unsigned uint8_t kbdTable[128] = {
 };
 
 
-static unsigned uint8_t shiftedKbdTable[128] = {
+static uint8_t shiftedKbdTable[128] = {
     0,  /* No key for scan code 0 */
     27, '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '_', '+', '\b',
     '\t', 'Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P', '{', '}', '\n',
