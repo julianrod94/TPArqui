@@ -184,11 +184,17 @@ void write(uint64_t fileDescriptor, uint64_t buffer, uint64_t size, uint64_t aux
 		case SPK:
 			printInSpk( (uint16_t) (((uint16_t *)buffer)[0]));
 			break;
+		case CLEAR:
+			ncClear();
+			break;
 		default:
 			;
 	}
 	return;
 
+}
+void clear(uint64_t fileDescriptor, uint64_t buffer, uint64_t size, uint64_t aux1, uint64_t aux2){
+	ncClear();
 }
 
 

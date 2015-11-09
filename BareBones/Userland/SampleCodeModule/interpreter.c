@@ -7,18 +7,20 @@ void inputInterpreter(char* message){
 	if(stringCompare(message,"help")){
 		showHelp();
 		return;
-	}
-	if(stringCompare(message,"piano")){
+	}else if(stringCompare(message,"piano")){
 		piano();
 		return;
-	}
-	if(stringCompare(message,"beep")){
+	}else if(stringCompare(message,"beep")){
 		beep();
-	}
-	if(stringCompare(message,"stopwatch")){
+	}else if(stringCompare(message,"stopwatch")){
 		stopWatch();
+	}else if(stringCompare(message,"musicplayer")){
+		playMusic();
+	}else if(stringCompare(message,"clear")){
+		clearShell();
+	}else{
+		printf("Command not found, try 'help'");
 	}
-	printf("Command not found, try 'help'");
 	return;
 }
 

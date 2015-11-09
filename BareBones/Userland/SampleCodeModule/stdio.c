@@ -181,4 +181,8 @@ uint64_t askIfThereWasInput(void) {
     return result;
 }
 
+void clearShell(void){
+    write(3,0,0,0,0);
+}
+
 

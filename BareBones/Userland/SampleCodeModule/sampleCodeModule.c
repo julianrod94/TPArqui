@@ -20,6 +20,7 @@ int main() {
 	
 	//Clean BSS
 	memset(&bss, 0, &endOfBinary - &bss);
+	clearShell();
 	printf("\n");
 	while(1){
 		printf("$>");

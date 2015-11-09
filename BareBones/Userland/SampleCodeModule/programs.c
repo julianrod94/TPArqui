@@ -13,7 +13,7 @@ static void printByeByeMessage() {
 }
 
 void piano(void) {
-
+	clearShell();
 	welcomeMessage("piano","Puede tocar con el teclado utilizando las teclas alfabeticas.\nPara salir presione ESC o Q\n");
 	pianoPlay();
 	printByeByeMessage();
