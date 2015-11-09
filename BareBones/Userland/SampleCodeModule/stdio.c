@@ -17,7 +17,8 @@ static int enterPressed = 0;
 static char readKbdBuffer(void) {
 	
 	char c;
-    read(0, (uint64_t)&c, 1, 2, 0);
+    read(STDIN, (uint64_t)&c, 1, 2, 0);
+	
 	return c;
 
 }
@@ -28,13 +29,15 @@ static void enqueueChar(char c) {
 		return;
 	}
 	if (c == '\b') {
-		enqueueIdx--;
-		if (enqueueIdx < 0) {
-			enqueueIdx = BUFFER_SIZE - 1;
+		if (buffSize > 0) {
+			enqueueIdx--;
+			buffSize--;
+			if (enqueueIdx < 0) {
+				enqueueIdx = BUFFER_SIZE - 1;
+			}
 		}
 		return;
 	}
-	
 	internalBuffer[enqueueIdx++] = c;
 	buffSize++;
 	if (enqueueIdx == BUFFER_SIZE) {
@@ -43,11 +46,11 @@ static void enqueueChar(char c) {
 }
 
 static char dequeueChar(void) {
-
+	
 	char result = 0;
-	if (buffSize != 0) {
+	if (buffSize > 0) {
 		result = internalBuffer[dequeueIdx++];
-		buffSize++;
+		buffSize--;
 		if (dequeueIdx == BUFFER_SIZE) {
 			dequeueIdx = 0;
 			
@@ -69,15 +72,17 @@ char getchar(void) {
 	
 	char c, result;
 	if (!enterPressed) {
-		while( (c = readKbdBuffer()) != '\n' && buffSize < BUFFER_SIZE) {
-			enqueueChar(c);
-		}
+        do {
+            c = readKbdBuffer();
+            enqueueChar(c);
+        } while(c != '\n' && buffSize < BUFFER_SIZE);
 		enterPressed = 1;
 	}
 	result = dequeueChar();
-	if (result == '\n') {
+	if (result == '\n') {	
 		enterPressed = 0;
 	}
+	
 	return result;
 }
 
@@ -165,9 +170,15 @@ void printf(char * fmt, ...) {
     write(1, (uint64_t)result, (uint64_t) (j % 256) , 0, 0);
 }
 
-int askIfThereWasInput(void) {
-
-    return buffSize
+uint64_t askIfThereWasInput(void) {
+    
+    uint64_t result;
+    read(STDIN, (uint64_t)&result, 1, 4, 0);
+	if (result) {		
+		char c;
+	    read(STDIN, (uint64_t)&c, 1, 2, 0);
+	}
+    return result;
 }
 
 

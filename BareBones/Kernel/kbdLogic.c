@@ -121,6 +121,16 @@ static int analizeScanCode(uint64_t code) {
     return OTHER;
 }
 
+uint64_t checkKbdInterrupt(void) {
+
+	uint8_t code = peekKey();
+	if (code >= 128 || code < 0) {
+		dequeueKey();
+	}
+	return  (uint64_t)((code >= 128 || code < 0) ? 0 : 1);
+
+}
+
 
 char getCharFromKbd() {
 
@@ -169,7 +179,6 @@ char getCharFromKbd() {
 uint16_t getNoteFromKbd() {
 
     uint8_t code = dequeueKey();
-	//uint8_t code = portRead();
 	uint16_t note = -1;
 	if (code == -1) {
 		return -1;

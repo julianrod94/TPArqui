@@ -66,7 +66,7 @@ void stopWatch() {
 						}
 					} while ( !(option == 'E' || option == 'e' || option == 'r' || option == 'R' || option == 'q' || option == 'Q'));
 				}
-			} while (option != 'q' && option != 'Q');
+			} while (option != 'q' || option != 'Q');
 		} else if (option != 'q' && option != 'Q') {
 			printf("Opcion inválida. Intente nuevamente\n");
 		}

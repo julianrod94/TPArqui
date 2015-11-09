@@ -32,23 +32,29 @@ static void readFromKbdNoPrint(char * buffer, uint64_t size) {
  * and 2 as aux arg1
  */
 static void readFromKbdPrint(char * buffer, uint64_t size) {
-
+	
 	uint32_t i = 0;
 	char c;
-	while (i < size) {
+	while (i < size ) {
 		c = getCharFromKbd();
-		if (c == -1){
-			_hlt();
-		} else {
+		if (c != -1){
 			buffer[i++] = c;
 			ncPrintChar(c);
 		}
 	}
+	
+	return;
+}
+
+static void readIfThereWasAKbdInt(uint64_t * result) {
+	
+
+	result[0] = (uint64_t)checkKbdInterrupt();
 	return;
 }
 
 
-void readNote(uint16_t * result) {
+static void readNote(uint16_t * result) {
 	
 	uint16_t note;
 	do {
@@ -91,7 +97,7 @@ static void readFreqfromTimer(uint64_t * result) {
  */
 static void readCurrentVideo(uint8_t ** buffer) {
 
-	buffer[0] = (uint8_t) getCurrentVideo();
+	buffer[0] = (uint8_t *) getCurrentVideo();
 	return;
 }
 
@@ -139,6 +145,9 @@ void read(uint64_t fileDescriptor, uint64_t buffer, uint64_t size, uint64_t aux1
 					break;
 				case 3:
 					readNote((uint16_t *) buffer);
+					break;
+				case 4:
+					readIfThereWasAKbdInt( (uint64_t *) buffer);
 					break;
 			}
 			break;

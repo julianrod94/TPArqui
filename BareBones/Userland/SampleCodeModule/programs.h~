@@ -1,5 +1,5 @@
 
 void piano(void);
 void echo(void);
-void stopWatch(void);
+void stopwatch(void);
 void playMusic(void);

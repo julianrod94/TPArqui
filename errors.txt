@@ -1,6 +1,6 @@
-stdio.c:59:13: warning: ‘peekChar’ defined but not used [-Wunused-function]
+stdio.c:62:13: warning: ‘peekChar’ defined but not used [-Wunused-function]
  static char peekChar(void) {
              ^
 1+0 registros leídos
 1+0 registros escritos
-1 byte (1 B) copiado, 4,2533e-05 s, 23,5 kB/s
+1 byte (1 B) copiado, 8,8946e-05 s, 11,2 kB/s

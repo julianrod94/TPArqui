@@ -1,6 +1,6 @@
 #include <stdint.h>
 #include "stdio.h"
-#include "string.h"
+#include "programs.h"
 
 
 
@@ -19,11 +19,8 @@ int main() {
 	
 	//Clean BSS
 	memset(&bss, 0, &endOfBinary - &bss);
-	
-	char buffer[100];
-	printf("Hola\nIngrese texto: ");
-	readLine(buffer, 100);
-	printf("\n\nUsted ingreso %s\n", buffer);
+
+	stopWatch();
 	while(1);
 
 	//Test if BSS is properly set up
