@@ -1,12 +1,7 @@
 #include <stdint.h>
 #include "stdio.h"
-<<<<<<< HEAD
-#include "interpreter.h"
-=======
 #include "programs.h"
 #include "interpreter.h"
-
->>>>>>> pruebasJM
 
 
 char * v = (char*)0xB8000 + 79 * 2;
