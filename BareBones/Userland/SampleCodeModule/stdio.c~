@@ -79,7 +79,6 @@ char getchar(void) {
 		enterPressed = 0;
 	}
 	return result;
-
 }
 
 void readLine(char * buffer, int size) {
@@ -164,4 +163,29 @@ void printf(char * fmt, ...) {
     }
     va_end(ap);
     write(1, (uint64_t)result, (uint64_t) (j % 256) , 0, 0);
+}
+
+char* readLine(){
+    char buffer[256];
+    int i=0;
+    char c=0;
+    do {
+        read(0, (uint64_t)&c, 1, 1, 0);
+
+        if(c != '\b' && c!='\t' && c!='\n'){
+
+            buffer[i++] = c;
+        }
+        if(c == '\n'){
+            buffer[i]=0;
+            return buffer;
+        }
+        if(c == '\b'){
+            i--;
+        }
+    } while (i<255 && c!='\n');
+    if(i==255){
+        buffer[255] = 0;
+    }
+    return buffer;
 }

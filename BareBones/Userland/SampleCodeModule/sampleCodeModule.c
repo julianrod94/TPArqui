@@ -9,7 +9,8 @@ char * v = (char*)0xB8000 + 79 * 2;
 extern char bss;
 extern char endOfBinary;
 
-static char* buffer;
+static int var1 = 0;
+static int var2 = 0;
 
 
 void * memset(void * destiny, int32_t c, uint64_t length);
@@ -30,7 +31,7 @@ int main() {
 		return 0xDEADC0DE;
 	
 	while(1){
-		buffer = readLine();
+		
 		
 	}
 	return 0xDEADBEEF;
