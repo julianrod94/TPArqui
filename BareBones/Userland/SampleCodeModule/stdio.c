@@ -165,3 +165,9 @@ void printf(char * fmt, ...) {
     write(1, (uint64_t)result, (uint64_t) (j % 256) , 0, 0);
 }
 
+int askIfThereWasInput(void) {
+
+    return buffSize
+}
+
+
