@@ -22,13 +22,7 @@ int main() {
 	char buffer[100];
 	int i = 0, flag = 0;
 	printf("Hola\nIngrese texto: ");
-	while (i < 20 && !flag) {
-		buffer[i] = getchar();
-		flag = buffer[i] == '\n';		
-		putchar(buffer[i++]);
-		
-	}
-	buffer[i] = 0;
+	readLine(buffer, 100);
 	printf("\n\nUsted ingreso %s\n", buffer);
 	while(1);
 
