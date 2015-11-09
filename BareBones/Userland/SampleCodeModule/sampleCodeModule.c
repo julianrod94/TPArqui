@@ -1,6 +1,12 @@
 #include <stdint.h>
 #include "stdio.h"
+<<<<<<< HEAD
 #include "interpreter.h"
+=======
+#include "programs.h"
+#include "interpreter.h"
+
+>>>>>>> pruebasJM
 
 
 char * v = (char*)0xB8000 + 79 * 2;
@@ -8,8 +14,6 @@ char * v = (char*)0xB8000 + 79 * 2;
 extern char bss;
 extern char endOfBinary;
 
-static int var1 = 2;
-static int var2 = 3;
 static char buffer[256]={0};
 
 
@@ -19,14 +23,20 @@ int main() {
 	
 	//Clean BSS
 	memset(&bss, 0, &endOfBinary - &bss);
-	
 
-	printf("Ingrese texto: ");
-	while(1) {	
-		char c = getchar();
-		putchar(c);
+	clearShell();
+	printf("\n");
+
+
+	while(1){
+		printf("$>");
+		readLine(buffer,256);
+		inputInterpreter(buffer);
+		printf("\n");
+
 	}
-
+	return 0xDEADBEEF;
+}
 void * memset(void * destiation, int32_t c, uint64_t length) {
 	uint8_t chr = (uint8_t)c;
 	char * dst = (char*)destiation;

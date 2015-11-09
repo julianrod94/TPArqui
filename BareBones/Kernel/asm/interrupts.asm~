@@ -87,6 +87,7 @@ _sti:
 	ret
 
 _hlt:
+	cli
     hlt
     ret
 

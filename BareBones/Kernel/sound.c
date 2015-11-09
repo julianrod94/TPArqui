@@ -1,4 +1,5 @@
 #include "sound.h"
+#include "interrupts.h"
 
 static int frecTable[128] =
 	{

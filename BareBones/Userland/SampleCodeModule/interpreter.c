@@ -1,19 +1,26 @@
 #include "interpreter.h"
+#include "stdio.h"
+#include "programs.h"
 
 
 void inputInterpreter(char* message){
-	if(stringCompare(message,"man")){
+	if(stringCompare(message,"help")){
 		showHelp();
 		return;
-	}
-	if(stringCompare(message,"piano")){
-		startPiano();
+	}else if(stringCompare(message,"piano")){
+		piano();
 		return;
-	}
-	if(stringCompare(message,"beep")){
+	}else if(stringCompare(message,"beep")){
 		beep();
+	}else if(stringCompare(message,"stopwatch")){
+		stopWatch();
+	}else if(stringCompare(message,"musicplayer")){
+		playMusic();
+	}else if(stringCompare(message,"clear")){
+		clearShell();
+	}else{
+		printf("Command not found, try 'help'");
 	}
-	printf("Command not found, try 'help'");
 	return;
 }
 
@@ -35,32 +42,14 @@ uint64_t stringCompare(char* str1, char* str2){
 
 void showHelp(void){
 	printf("Este sistema operativo dispone de los siguientes comandos: \n");
-	printf("man: este comando muestra el manual de usuario del sistema operativo\n");
+	printf("help: este comando muestra el manual de usuario del sistema operativo\n");
 	printf("piano: este comando inicia el programa \"piano\" el cual se podra utilizar como el instrumento musical\n");
 	printf("printf: este comando imprimira en pantalla la cadena de caracteres que se ingresa luego del comando\n");
 	printf("beep: este comando hace sonar el pcspeaker con un sonido de corta duracion\n");
 	return;
 }
 
-void shellRead(char* buffer){
-	uint64_t character = 0;
-	int i = 0;
-	while(character = getchar()!='\n' && i<255){
-		if(character!=0){
-			buffer[i] = (char) character;
-			i++;
-			putchar(character);
-		}
-	}
-	return;
-}
-void beep(void){
-	return;
-}
-void startPiano(void){
-	uint64_t note = 0;
-	while(note=getchar() !='q'){
 
-	}
+void beep(void){
 	return;
 }

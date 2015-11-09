@@ -25,3 +25,10 @@ int decimalDigits(int number) {
 	
 	return digits;
 }
+
+int floor(double number) {
+
+    return (int)(number - ((int) number % 1));
+}
+
+
