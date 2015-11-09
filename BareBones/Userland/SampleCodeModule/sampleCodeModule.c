@@ -1,6 +1,7 @@
 #include <stdint.h>
 #include "stdio.h"
 #include "programs.h"
+#include "interpreter.h"
 
 
 
@@ -8,6 +9,7 @@ char * v = (char*)0xB8000 + 79 * 2;
 
 extern char bss;
 extern char endOfBinary;
+
 
 char buffer[256]={0};
 
@@ -18,18 +20,9 @@ int main() {
 	
 	//Clean BSS
 	memset(&bss, 0, &endOfBinary - &bss);
-
-	playMusic();
-	while(1);
-
-	//Test if BSS is properly set up
-	if (var1 == 0 && var2 == 0)
-		return 0xDEADC0DE;
-	
 	while(1){
 		readLine(buffer,256);
-		
-		
+		inputInterpreter(buffer);
 	}
 	return 0xDEADBEEF;
 }

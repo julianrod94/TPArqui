@@ -59,13 +59,13 @@ static char dequeueChar(void) {
 	return result;
 }
 
-static char peekChar(void) {
+// static char peekChar(void) {
 	
-	if (buffSize == 0) {
-		return 0;
-	}
-	return internalBuffer[dequeueIdx];
-}
+// 	if (buffSize == 0) {
+// 		return 0;
+// 	}
+// 	return internalBuffer[dequeueIdx];
+// }
 
 
 char getchar(void) {

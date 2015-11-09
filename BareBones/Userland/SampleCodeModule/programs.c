@@ -77,7 +77,7 @@ void stopWatch() {
 
 void playMusic(void) {
 	
-	char option;
+	char option=2;
 	char * options ="1- Mario Bros. Theme\n2- Tetris theme\n3- Happy-Birthday\n";
  
 	welcomeMessage("play music","Para salir presione Q\n");
