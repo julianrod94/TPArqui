@@ -156,7 +156,7 @@ void write(uint64_t fileDescriptor, uint64_t buffer, uint64_t size, uint64_t aux
 			printInVideo((char *) buffer, size);
 			break;
 		case SPK:
-			printInSpk((unsigned short) buffer);
+			printInSpk((unsigned short) (((uint16_t *)buffer)[0]);
 			break;
 		default:
 			;

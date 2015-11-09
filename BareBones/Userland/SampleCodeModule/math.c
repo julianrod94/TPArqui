@@ -30,3 +30,5 @@ int floor(double number) {
 
     return (int)(number - ((int) number % 1));
 }
+
+
