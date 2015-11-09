@@ -2,16 +2,83 @@
 #include "syscallwrappers.h"
 #include <stdarg.h>
 #include "math.h"
+#include "stdio.h"
 
 #define SYMBOL_ERROR "\n\nError! Simbolo no reconocido. Abortando...\n"
+#define BUFFER_SIZE 1024
+
+static char internalBuffer[BUFFER_SIZE];
+static int enqueueIdx = 0;
+static int dequeueIdx = 0;
+static int buffSize = 0;
+static int enterPressed = 0;
+
+
+static char readKbdBuffer(void) {
+	
+	char c;
+    read(0, (uint64_t)&c, 1, 2, 0);
+	return c;
+
+}
+
+static void enqueueChar(char c) {
+	
+	if (buffSize == BUFFER_SIZE) {
+		return;
+	}
+	if (c == '\b') {
+		enqueueIdx--;
+		if (enqueueIdx < 0) {
+			enqueueIdx = BUFFER_SIZE - 1;
+		}
+		return;
+	}
+	
+	internalBuffer[enqueueIdx++] = c;
+	buffSize++;
+	if (enqueueIdx == BUFFER_SIZE) {
+		enqueueIdx = 0;
+	}
+}
+
+static char dequeueChar(void) {
+
+	char result = 0;
+	if (buffSize != 0) {
+		result = internalBuffer[dequeueIdx++];
+		buffSize++;
+		if (dequeueIdx == BUFFER_SIZE) {
+			dequeueIdx = 0;
+			
+		}
+	}
+	return result;
+}
+
+static char peekChar(void) {
+	
+	if (buffSize == 0) {
+		return 0;
+	}
+	return internalBuffer[dequeueIdx];
+}
+
 
 char getchar(void) {
-
-	char c;
-    do {
-        read(0, (uint64_t)&c, 1, 2, 0);
-    } while (c == '\b' || c == '\t');
-	return c;
+	
+	char c, result;
+	if (!enterPressed) {
+		while( (c = readKbdBuffer()) != '\n' && buffSize < BUFFER_SIZE) {
+			enqueueChar(c);
+		}
+		enterPressed = 1;
+	}
+	result = dequeueChar();
+	if (result == '\n') {
+		enterPressed = 0;
+	}
+	return result;
 }
 
 void readLine(char * buffer, int size) {

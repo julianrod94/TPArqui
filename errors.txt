@@ -1,3 +1,16 @@
+sampleCodeModule.c: In function ‘main’:
+sampleCodeModule.c:25:2: warning: implicit declaration of function ‘readLine’ [-Wimplicit-function-declaration]
+  readLine(buffer, 100);
+  ^
+sampleCodeModule.c:23:13: warning: unused variable ‘flag’ [-Wunused-variable]
+  int i = 0, flag = 0;
+             ^
+sampleCodeModule.c:23:6: warning: unused variable ‘i’ [-Wunused-variable]
+  int i = 0, flag = 0;
+      ^
+stdio.c:59:13: warning: ‘peekChar’ defined but not used [-Wunused-function]
+ static char peekChar(void) {
+             ^
 1+0 registros leídos
 1+0 registros escritos
-1 byte (1 B) copiado, 4,6856e-05 s, 21,3 kB/s
+1 byte (1 B) copiado, 4,4679e-05 s, 22,4 kB/s

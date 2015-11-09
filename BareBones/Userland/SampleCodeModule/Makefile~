@@ -3,7 +3,7 @@ include ../Makefile.inc
 MODULE=0000-sampleCodeModule.bin
 
 #SOURCES=$(wildcard *.c)
-SOURCES= sampleCodeModule.c syscallwrappers.c math.c stdio.c time.c
+SOURCES= sampleCodeModule.c syscallwrappers.c math.c stdio.c time.c music.c
 
 
 all: $(MODULE)

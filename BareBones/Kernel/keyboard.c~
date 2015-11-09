@@ -35,7 +35,6 @@ void keyboardISR(void) {
 		capsLock = !capsLock;
 	} else if (scanCode == 69) {
         numLock = !numLock;
-
     }
 
     buffer[enqueueIdx++] = scanCode;
@@ -61,6 +60,9 @@ uint64_t dequeueKey(void) {
 
 uint8_t peekKey(void) {
 
+	if (bufferSize == 0) {
+		return -1; 
+	}
 	return buffer[dequeueIdx];
 }
 

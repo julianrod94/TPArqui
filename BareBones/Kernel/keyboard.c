@@ -48,7 +48,7 @@ void keyboardISR(void) {
 uint64_t dequeueKey(void) {
 
     if (bufferSize == 0) {
-        return -1; // maybe we could just halt the machine
+        return -1;
     }
     uint64_t result = buffer[dequeueIdx++];
     bufferSize--;
@@ -60,6 +60,9 @@ uint64_t dequeueKey(void) {
 
 uint8_t peekKey(void) {
 
+	if (bufferSize == 0) {
+		return -1; 
+	}
 	return buffer[dequeueIdx];
 }
 
