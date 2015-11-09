@@ -77,7 +77,7 @@ static void readFreqfromTimer(double * result) {
  */
 static void readCurrentVideo(uint8_t * buffer) {
 
-	buffer[0] = getCurrentVideo();
+	buffer[0] = (uint8_t) getCurrentVideo();
 	return;
 }
 
