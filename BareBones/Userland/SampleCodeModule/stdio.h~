@@ -2,5 +2,9 @@
 char getchar(void);
 void putchar(char c);
 void printf(char * fmt, ...);
-void readLine(char * buffer, int size)
+<<<<<<< HEAD
+void readLine(char * buffer, int size);
+=======
+char* readLine();
+>>>>>>> ff01765dd129a47e1ff20651085a199d33270601
 
