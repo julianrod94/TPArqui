@@ -88,7 +88,7 @@ static uint8_t shiftedKbdTable[128] = {
 static uint16_t notesTable[128] =
     {
     0,  27, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-    0,
+    27,
     9121, 8609, 8126, 7670, 7239, 6833, 6449, 6087, 5746,
     0, 0, 0, 0,
     5423, 5119, 4831, 4560, 4304, 4063, 3834, 3619, 3416,
@@ -163,6 +163,27 @@ char getCharFromKbd() {
     }
     return result;
 }
+
+
+uint16_t getNoteFromKbd() {
+
+    uint8_t code = dequeueKey();
+    
+    if (code > 128) {
+        return 0; /* A break code represents a stop sound event */
+    }
+    uint16_t note = notesTable[code];
+
+    if (note == 27) {
+        return 1; /* There's no note defined for value 1, so we use to represent an exit event */
+    }
+    return note;
+}
+
+
+
+
+
 
 
 

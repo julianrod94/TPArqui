@@ -16,3 +16,19 @@ void playNote(uint16_t note) {
 	
 	write(SPK, (uint64_t)&note, 0, 0, 0);
 }
+
+
+
+void pianoPlay(void) {
+
+	uint16_t note;
+	while(1) {
+
+		note = getNote();
+		if (note == 1) {
+			break;
+		}
+		playNote(note);
+	}
+
+}

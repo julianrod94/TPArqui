@@ -50,7 +50,9 @@ static void readFromKbdPrint(uint8_t * buffer, uint64_t size) {
 
 
 void readNote(uint16_t * result) {
-	;
+	
+	result[0] = getNoteFromKbd();
+	return;
 }
 
 
