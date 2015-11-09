@@ -1,19 +1,18 @@
 #include "syscallwrappers.h"
+#include "stdio.h"
+#include "time.h"
 
-uint16_t getNote() {
+static uint16_t getNote() {
 
 	uint16_t note;
 	read(STDIN, (uint64_t)&note, 1, 3, 0);
-	if (note > 128) {
-		note = 0;	
-	}
 	return note; 
 	
 }
 
 
-void playNote(uint16_t note) {
-	
+static void playNote(uint16_t note) {
+	//if (note != 0)printf("%d", (int)note);
 	write(SPK, (uint64_t)&note, 0, 0, 0);
 }
 
@@ -25,10 +24,12 @@ void pianoPlay(void) {
 	while(1) {
 
 		note = getNote();
+
 		if (note == 1) {
 			break;
 		}
 		playNote(note);
+		sleep(56); /* minimum sleep time */
 	}
 
 }

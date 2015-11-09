@@ -1,6 +1,7 @@
 #include <stdint.h>
 #include <keyboard.h>
 #include <naiveConsole.h>
+#include <interrupts.h>
 
 #define NUMBER 1
 #define LETTER 2
@@ -168,11 +169,16 @@ char getCharFromKbd() {
 uint16_t getNoteFromKbd() {
 
     uint8_t code = dequeueKey();
+	//uint8_t code = portRead();
+	uint16_t note = -1;
+	if (code == -1) {
+		return -1;
+	}
     
     if (code > 128) {
         return 0; /* A break code represents a stop sound event */
     }
-    uint16_t note = notesTable[code];
+    note = notesTable[code];
 
     if (note == 27) {
         return 1; /* There's no note defined for value 1, so we use to represent an exit event */

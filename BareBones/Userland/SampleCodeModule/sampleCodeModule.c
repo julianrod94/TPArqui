@@ -1,6 +1,6 @@
 #include <stdint.h>
 #include "stdio.h"
-#include "time.h"
+#include "music.h"
 
 
 char * v = (char*)0xB8000 + 79 * 2;
@@ -20,10 +20,10 @@ int main() {
 	memset(&bss, 0, &endOfBinary - &bss);
 	
 	printf("Hola");
-	sleep(5000);
-	printf("Ingrese texto: ");
+	pianoPlay();
 	while(1) {	
 		char c = getchar();
+		putchar(c);
 	}
 
 	//Test if BSS is properly set up

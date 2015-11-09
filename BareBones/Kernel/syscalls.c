@@ -10,10 +10,10 @@
  * Read syscall by using keyboard (stdin) as file descriptor
  * and 1 as aux arg1
  */
-static void readFromKbdNoPrint(uint8_t * buffer, uint64_t size) {
+static void readFromKbdNoPrint(char * buffer, uint64_t size) {
 
 	uint32_t i = 0;
-	uint8_t c;
+	char c;
 	
 	while (i < size) {
 		c = getCharFromKbd();
@@ -31,11 +31,10 @@ static void readFromKbdNoPrint(uint8_t * buffer, uint64_t size) {
  * Read syscall by using keyboard (stdin) as file descriptor
  * and 2 as aux arg1
  */
-static void readFromKbdPrint(uint8_t * buffer, uint64_t size) {
+static void readFromKbdPrint(char * buffer, uint64_t size) {
 
 	uint32_t i = 0;
-	uint8_t c;
-	
+	char c;
 	while (i < size) {
 		c = getCharFromKbd();
 		if (c == -1){
@@ -51,7 +50,15 @@ static void readFromKbdPrint(uint8_t * buffer, uint64_t size) {
 
 void readNote(uint16_t * result) {
 	
-	result[0] = getNoteFromKbd();
+	uint16_t note;
+	do {
+		note = getNoteFromKbd();
+		if (note == -1) {
+			_hlt();
+		} else {
+			result[0] = note;
+		}
+	} while (note == -1);
 	return;
 }
 
@@ -106,7 +113,7 @@ static void printInVideo(uint8_t * buffer, uint64_t size) {
 
 
 static void printInSpk(uint16_t freq) {
-
+	
 	if (freq == 0) {
 		turnOffSound();
 	} else {
@@ -125,10 +132,10 @@ void read(uint64_t fileDescriptor, uint64_t buffer, uint64_t size, uint64_t aux1
 		case STDIN:
 			switch (aux1) {
 				case 1:
-					readFromKbdNoPrint((uint8_t *) buffer, size);
+					readFromKbdNoPrint((char *) buffer, size);
 					break;
 				case 2:
-					readFromKbdPrint((uint8_t *) buffer, size);
+					readFromKbdPrint((char *) buffer, size);
 					break;
 				case 3:
 					readNote((uint16_t *) buffer);
