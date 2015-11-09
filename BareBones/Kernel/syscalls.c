@@ -49,6 +49,11 @@ static void readFromKbdPrint(uint8_t * buffer, uint64_t size) {
 }
 
 
+void readNote(uint16_t * result) {
+	;
+}
+
+
 
 /* Read Ticks:
  * Read syscall by using timer as file descriptor
