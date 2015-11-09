@@ -80,7 +80,7 @@ static void readFreqfromTimer(uint64_t * result) {
  * Read syscall by using video as file descriptor
  * and 2 as aux arg 1
  */
-static void readCurrentVideo(uint8_t * buffer) {
+static void readCurrentVideo(uint64_t * buffer) {
 
 	buffer[0] = getCurrentVideo();
 	return;
