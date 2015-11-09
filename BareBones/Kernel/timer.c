@@ -2,17 +2,17 @@
 
 
 
-static long ticks = 0;
-static double fq = 18.222;
+static uint64_t ticks = 0;
+static uint64_t fq = 18.222;
 
 void timerISR(void) {
 	ticks++;
 }
 
-long getTicks(void) {
+uint64_t getTicks(void) {
 	return ticks;
 }
 
-long getFrequency(void) {
+uint64_t getFrequency(void) {
 	return fq;
 }
