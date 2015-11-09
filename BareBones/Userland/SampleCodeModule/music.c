@@ -1,6 +1,10 @@
 #include "syscallwrappers.h"
+#include "music.h"
 #include "stdio.h"
 #include "time.h"
+
+
+
 
 static uint16_t getNote() {
 
@@ -32,6 +36,15 @@ void pianoPlay(void) {
 		sleep(56); /* minimum sleep time */
 	}
 
+}
+
+void automaticPlay(tMusicNote musicNote) {
+	
+	uint16_t note = musicNote.note;
+	long duration = musicNote.duration;
+	playNote(note);
+	sleep(duration);
+	playNote(0);
 }
 
 

@@ -2,6 +2,9 @@
 #include "stdio.h"
 #include "time.h"
 
+
+
+
 static uint16_t getNote() {
 
 	uint16_t note;
@@ -21,7 +24,6 @@ static void playNote(uint16_t note) {
 void pianoPlay(void) {
 
 	uint16_t note;
-	uint8_t wasPlaying = 0;
 	while(1) {
 
 		note = getNote();
@@ -29,14 +31,19 @@ void pianoPlay(void) {
 		if (note == 1) {
 			break;
 		}
-		if (note != 0 && !wasPlaying) {
-			playNote(note);
-			wasPlaying = 1;
-		} else if (note == 0) {
-			wasPlaying = 0;
-			playNote(note);
-		}	
+		playNote(note);
 		sleep(56); /* minimum sleep time */
 	}
 
 }
+
+void automaticPlay(tMusicNote musicNote) {
+	
+	uint16_t note = musicNote.note;
+	long duration = musicNote.duration;
+	playNote(note);
+	sleep(duration);
+	playNote(0);
+}
+
+

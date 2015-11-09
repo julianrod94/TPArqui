@@ -66,7 +66,7 @@ void stopWatch() {
 						}
 					} while ( !(option == 'E' || option == 'e' || option == 'r' || option == 'R' || option == 'q' || option == 'Q'));
 				}
-			} while (option != 'q' || option != 'Q');
+			} while (option != 'q' && option != 'Q');
 		} else if (option != 'q' && option != 'Q') {
 			printf("Opcion inválida. Intente nuevamente\n");
 		}
@@ -76,11 +76,32 @@ void stopWatch() {
 
 
 void playMusic(void) {
-
+	
+	char option;
 	char * options ="1- Mario Bros. Theme\n2- Tetris theme\n3- Happy-Birthday\n";
+ 
 	welcomeMessage("play music","Para salir presione Q\n");
-	printf("Seleccione una de las siguientes opciones:\n%s\n", options);
+	printf("Seleccione una de las siguientes opciones:\n%s\n", options);	
+	
+	tMusicNote tetrisMusic[256] ={ 	
+		{3619, 188}, {4831, 188}, {4560, 188}, {4063, 375}, {4560, 188}, {4831, 188}, {5423, 375},
+		{5423, 188}, {4560, 188}, {3619, 375}, {4063, 188}, {4560, 188}, {4831, 375},
+		{4831, 188}, {4560, 188}, {4063, 375}, {3619, 375}, {4560, 375}, {5423, 375}, {5423, 938},
+		{4063, 188}, {4063, 188}, {3416, 188}, {2711, 375}, {3043, 188}, {3419, 188}, {3619, 563},
+		{4560, 188}, {3619, 375}, {4063, 188}, {4560, 188}, {4831, 375}, 
+	{0, 0} };
 
+
+	do {
+
+		int i;
+		while (i < 256 && tetrisMusic[i].note != 0 && tetrisMusic[i].duration != 0){
+
+			automaticPlay(tetrisMusic[i++]);
+		}
+
+
+	} while (option != 'Q' && option != 'q');
 }
 
 

@@ -1,6 +1,10 @@
 stdio.c:62:13: warning: ‘peekChar’ defined but not used [-Wunused-function]
  static char peekChar(void) {
              ^
+programs.c: In function ‘playMusic’:
+programs.c:105:2: warning: ‘option’ is used uninitialized in this function [-Wuninitialized]
+  } while (option != 'Q' && option != 'q');
+  ^
 1+0 registros leídos
 1+0 registros escritos
-1 byte (1 B) copiado, 8,8946e-05 s, 11,2 kB/s
+1 byte (1 B) copiado, 2,1918e-05 s, 45,6 kB/s

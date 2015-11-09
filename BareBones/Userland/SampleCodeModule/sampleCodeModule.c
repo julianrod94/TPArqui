@@ -20,7 +20,7 @@ int main() {
 	//Clean BSS
 	memset(&bss, 0, &endOfBinary - &bss);
 
-	stopWatch();
+	playMusic();
 	while(1);
 
 	//Test if BSS is properly set up
