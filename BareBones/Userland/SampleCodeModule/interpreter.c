@@ -19,7 +19,9 @@ void inputInterpreter(char* message){
 	}else if(stringCompare(message,"clear")){
 		clearShell();
 	}else{
-		printf("Command not found, try 'help'");
+		printf("Command '");
+		printf(message);
+		printf("' not found, try 'help'\n");
 	}
 	return;
 }
