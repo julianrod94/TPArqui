@@ -20,9 +20,13 @@ int main() {
 	
 	//Clean BSS
 	memset(&bss, 0, &endOfBinary - &bss);
+	printf("\n");
 	while(1){
+		printf("$>");
 		readLine(buffer,256);
 		inputInterpreter(buffer);
+		printf("\n");
+
 	}
 	return 0xDEADBEEF;
 }
