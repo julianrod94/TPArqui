@@ -10,10 +10,10 @@
  * Read syscall by using keyboard (stdin) as file descriptor
  * and 1 as aux arg1
  */
-static void readFromKbdNoPrint(char * buffer, uint64_t size) {
+static void readFromKbdNoPrint(uint8_t * buffer, uint64_t size) {
 
-	int i = 0;
-	char c;
+	uint32_t i = 0;
+	uint8_t c;
 	
 	while (i < size) {
 		c = getCharFromKbd();
@@ -31,10 +31,10 @@ static void readFromKbdNoPrint(char * buffer, uint64_t size) {
  * Read syscall by using keyboard (stdin) as file descriptor
  * and 2 as aux arg1
  */
-static void readFromKbdPrint(char * buffer, uint64_t size) {
+static void readFromKbdPrint(uint8_t * buffer, uint64_t size) {
 
-	int i = 0;
-	char c;
+	uint32_t i = 0;
+	uint8_t c;
 	
 	while (i < size) {
 		c = getCharFromKbd();
@@ -49,12 +49,15 @@ static void readFromKbdPrint(char * buffer, uint64_t size) {
 }
 
 
+static void readNote()
+
+
 
 /* Read Ticks:
  * Read syscall by using timer as file descriptor
  * and 1 as aux arg 1
  */
-static void readTicksfromTimer(long * result) {
+static void readTicksfromTimer(uint64_t * result) {
 
 	result[0] = getTicks();
 	return;
@@ -64,7 +67,7 @@ static void readTicksfromTimer(long * result) {
  * Read syscall by using timer as file descriptor
  * and 2 as aux arg 1
  */
-static void readFreqfromTimer(double * result) {
+static void readFreqfromTimer(uint64_t * result) {
 
 	result[0] = getFrequency();
 	return;
@@ -82,12 +85,12 @@ static void readCurrentVideo(uint8_t * buffer) {
 }
 
 
-static void printInVideo(char * buffer, uint64_t size) {
+static void printInVideo(uint8_t * buffer, uint64_t size) {
 
-	int i = 0;
+	uint32_t i = 0;
 
 	while (i < size) {
-		char c = buffer[i++];
+		uint8_t c = buffer[i++];
 		if (c == '\n') {
 			ncNewline();
 		} else {
@@ -98,7 +101,7 @@ static void printInVideo(char * buffer, uint64_t size) {
 }
 
 
-static void printInSpk(unsigned short freq) {
+static void printInSpk(uint16_t freq) {
 
 	if (freq == 0) {
 		turnOffSound();
@@ -118,10 +121,13 @@ void read(uint64_t fileDescriptor, uint64_t buffer, uint64_t size, uint64_t aux1
 		case STDIN:
 			switch (aux1) {
 				case 1:
-					readFromKbdNoPrint((char *) buffer, size);
+					readFromKbdNoPrint((uint8_t *) buffer, size);
 					break;
 				case 2:
-					readFromKbdPrint((char *) buffer, size);
+					readFromKbdPrint((uint8_t *) buffer, size);
+					break;
+				case 3:
+					readNote((uint16_t *) buffer);
 					break;
 			}
 			break;
@@ -136,10 +142,10 @@ void read(uint64_t fileDescriptor, uint64_t buffer, uint64_t size, uint64_t aux1
 		case TIMER:
 			switch (aux1) {
 				case 1: 
-					readTicksfromTimer((long *) buffer);
+					readTicksfromTimer((uint64_t *) buffer);
 					break;
 				case 2:
-					readFreqfromTimer((double *) buffer);
+					readFreqfromTimer((uint64_t *) buffer);
 					break;
 			}		
 			break;
@@ -153,10 +159,10 @@ void write(uint64_t fileDescriptor, uint64_t buffer, uint64_t size, uint64_t aux
 	switch (fileDescriptor) {
 
 		case STDOUT:
-			printInVideo((char *) buffer, size);
+			printInVideo((uint8_t *) buffer, size);
 			break;
 		case SPK:
-			printInSpk((unsigned short) (((uint16_t *)buffer)[0]);
+			printInSpk( (uint16_t) (((uint16_t *)buffer)[0]));
 			break;
 		default:
 			;
