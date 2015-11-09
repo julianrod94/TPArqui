@@ -137,7 +137,7 @@ void read(uint64_t fileDescriptor, uint64_t buffer, uint64_t size, uint64_t aux1
 		case STDOUT:
 			switch (aux1) {
 				case 1:
-					readCurrentVideo((uint8_t *) buffer);
+					readCurrentVideo((uint8_t **) buffer);
 					break;
 			}
 			break;
