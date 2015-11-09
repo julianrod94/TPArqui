@@ -12,13 +12,16 @@ static int enqueueIdx = 0;
 static int dequeueIdx = 0;
 static int buffSize = 0;
 static int enterPressed = 0;
+static int countRead = 0;
 
 
 static char readKbdBuffer(void) {
 	
 	char c;
-    read(STDIN, (uint64_t)&c, 1, 2, 0);
-	
+    read(STDIN, (uint64_t)&c, 1, 1, 0);
+    if (!(c == '\b' && !buffSize)){
+        putchar(c);
+    }
 	return c;
 
 }
@@ -80,6 +83,7 @@ char getchar(void) {
 	}
 	result = dequeueChar();
 	if (result == '\n') {	
+        countRead = 0;
 		enterPressed = 0;
 	}
 	

@@ -2,6 +2,7 @@
 #include "stdio.h"
 #include "programs.h"
 #include "interpreter.h"
+#include "console.h"
 
 
 
@@ -11,24 +12,13 @@ extern char bss;
 extern char endOfBinary;
 
 
-char buffer[256]={0};
-
-
 void * memset(void * destiny, int32_t c, uint64_t length);
 
 int main() {
 	
 	//Clean BSS
 	memset(&bss, 0, &endOfBinary - &bss);
-	clearShell();
-	printf("\n");
-	while(1){
-		printf("$>");
-		readLine(buffer,256);
-		inputInterpreter(buffer);
-		printf("\n");
-
-	}
+	startShell();
 	return 0xDEADBEEF;
 }
 

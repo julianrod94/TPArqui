@@ -4,6 +4,9 @@
 
 
 void inputInterpreter(char* message){
+	if(message[0] == 0){
+		return;
+	}
 	if(stringCompare(message,"help")){
 		showHelp();
 		return;
@@ -44,10 +47,17 @@ uint64_t stringCompare(char* str1, char* str2){
 
 void showHelp(void){
 	printf("Este sistema operativo dispone de los siguientes comandos: \n");
+	printf("\n");
 	printf("help: este comando muestra el manual de usuario del sistema operativo\n");
+	printf("\n");
 	printf("piano: este comando inicia el programa \"piano\" el cual se podra utilizar como el instrumento musical\n");
-	printf("printf: este comando imprimira en pantalla la cadena de caracteres que se ingresa luego del comando\n");
+	printf("\n");
 	printf("beep: este comando hace sonar el pcspeaker con un sonido de corta duracion\n");
+	printf("\n");
+	printf("stopwatch: este comando iniciara un cronometro el cual puede parar cuando lo desee\n");
+	printf("\n");
+	printf("musicplayer: este comando reproduce musica por el speaker\n");
+	printf("\n");
 	return;
 }
 
