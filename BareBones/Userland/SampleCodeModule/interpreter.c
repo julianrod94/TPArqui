@@ -12,14 +12,19 @@ void inputInterpreter(char* message){
 		return;
 	}else if(stringCompare(message,"beep")){
 		beep();
+		return;
 	}else if(stringCompare(message,"stopwatch")){
 		stopWatch();
+		return;
 	}else if(stringCompare(message,"musicplayer")){
 		playMusic();
+		return;
 	}else if(stringCompare(message,"clear")){
 		clearShell();
+		return;
 	}else{
 		printf("Command not found, try 'help'");
+		return;
 	}
 	return;
 }
