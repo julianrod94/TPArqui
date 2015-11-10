@@ -48,9 +48,9 @@ static int inputInterpreter(char * command) {
 void startShell(void){
 
 	char command[128];
-	int run = 1;
+
 	clearShell();
-	
+	int run = 1;
 	while(run){
 		int result;
 		printf("$>");	

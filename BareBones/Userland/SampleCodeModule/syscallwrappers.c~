@@ -1,7 +1,6 @@
-#include "syscallwrappers.h"
-#include "syscaller.h"
 
-uint64_t sysCaller(uint64_t arg1, uint64_t arg2, uint64_t arg3, uint64_t arg4, uint64_t arg5, uint64_t arg6) {
+
+static uint64_t sysCaller(uint64_t arg1, uint64_t arg2, uint64_t arg3, uint64_t arg4, uint64_t arg5, uint64_t arg6) {
 
 	__asm__ ("int $0x80");
 	return 0;

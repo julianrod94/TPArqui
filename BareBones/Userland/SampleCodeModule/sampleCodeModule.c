@@ -1,7 +1,4 @@
 #include <stdint.h>
-#include "stdio.h"
-#include "programs.h"
-#include "interpreter.h"
 #include "console.h"
 
 
@@ -19,7 +16,7 @@ int main() {
 	//Clean BSS
 	memset(&bss, 0, &endOfBinary - &bss);
 	startShell();
-	return 0xDEADBEEF;
+	return 0;
 }
 
 void * memset(void * destiation, int32_t c, uint64_t length) {

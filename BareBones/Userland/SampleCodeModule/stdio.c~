@@ -5,20 +5,23 @@
 #include "stdio.h"
 
 #define SYMBOL_ERROR "\n\nError! Simbolo no reconocido. Abortando...\n"
-#define BUFFER_SIZE 1024
+#define BUFFER_SIZE 128
 
 static char internalBuffer[BUFFER_SIZE];
 static int enqueueIdx = 0;
 static int dequeueIdx = 0;
 static int buffSize = 0;
 static int enterPressed = 0;
+static int countRead = 0;
 
 
 static char readKbdBuffer(void) {
 	
 	char c;
-    read(STDIN, (uint64_t)&c, 1, 2, 0);
-	
+    read(STDIN, (uint64_t)&c, 1, 1, 0);
+    if (!(c == '\b' && !buffSize)){
+        putchar(c);
+    }
 	return c;
 
 }
@@ -59,13 +62,13 @@ static char dequeueChar(void) {
 	return result;
 }
 
-static char peekChar(void) {
+// static char peekChar(void) {
 	
-	if (buffSize == 0) {
-		return 0;
-	}
-	return internalBuffer[dequeueIdx];
-}
+// 	if (buffSize == 0) {
+// 		return 0;
+// 	}
+// 	return internalBuffer[dequeueIdx];
+// }
 
 
 char getchar(void) {
@@ -80,6 +83,7 @@ char getchar(void) {
 	}
 	result = dequeueChar();
 	if (result == '\n') {	
+        countRead = 0;
 		enterPressed = 0;
 	}
 	
@@ -174,7 +178,15 @@ uint64_t askIfThereWasInput(void) {
     
     uint64_t result;
     read(STDIN, (uint64_t)&result, 1, 4, 0);
+	if (result) {		
+		char c;
+	    read(STDIN, (uint64_t)&c, 1, 2, 0);
+	}
     return result;
+}
+
+void clearShell(void){
+    write(3,0,0,0,0);
 }
 
 

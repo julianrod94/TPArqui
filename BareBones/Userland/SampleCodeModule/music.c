@@ -1,8 +1,6 @@
 #include "syscallwrappers.h"
-#include "music.h"
-#include "stdio.h"
 #include "time.h"
-
+#include "music.h"
 
 
 
@@ -16,7 +14,6 @@ static uint16_t getNote() {
 
 
 static void playNote(uint16_t note) {
-	//if (note != 0)printf("%d", (int)note);
 	write(SPK, (uint64_t)&note, 0, 0, 0);
 }
 

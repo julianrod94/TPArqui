@@ -1,9 +1,6 @@
 #include <types.h>
-#include <naiveConsole.h>
 #include <interrupts.h>
-#include <handlers.h>
 #include <keyboard.h>
-#include <sound.h>
 #include <timer.h>
 #include <syscalls.h>
 
@@ -14,6 +11,15 @@ static void (*syscalls[2]) (uint64_t, uint64_t, uint64_t, uint64_t, uint64_t);
 
 
 
+static void int08(void){
+	timerISR();
+}
+
+static void int09(void){
+	keyboardISR();
+}
+
+
 void irqDispatcher(dword irq, dword syscall) {
 	
 	interrupts[0] = int08;
@@ -21,15 +27,6 @@ void irqDispatcher(dword irq, dword syscall) {
 
 	interrupts[irq]();
 	return;
-}
-
-
-void int08(void){
-	timerISR();
-}
-
-void int09(void){
-	keyboardISR();
 }
 
 

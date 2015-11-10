@@ -1,6 +1,5 @@
+#include <stdint.h>
 #include "syscallwrappers.h"
-#include "math.h"
-#include "stdio.h"
 
 
 void sleep(long millisecods) {

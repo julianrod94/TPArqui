@@ -13,6 +13,7 @@ GLOBAL _irq04Handler
 GLOBAL _irq05Handler
 GLOBAL portRead
 GLOBAL syscallHandler
+GLOBAL shutdown
 
 
 EXTERN irqDispatcher
@@ -128,14 +129,18 @@ _irq05Handler:
 
 portRead:
 	mov rdx, 0x60
-	mov rax, 0
+	xor rax, rax
 	in al, dx
 	ret
 
 syscallHandler:
-	
 	sti
-    call handler    
+	pushaq
+    	call handler
+	popaq   
 	iretq
 
+shutdown:
+	cli
+	hlt
 

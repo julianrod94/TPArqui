@@ -6,12 +6,8 @@
 #define WRITE 1
 #define SOUND 2
 
-void picMasterMask(); 
-void picSlaveMask();
-void irqDispatcher(dword irq, dword syscall);
-void int08();
-void int09();
 
+void irqDispatcher(dword irq, dword syscall);
 void handler(uint64_t, uint64_t, uint64_t, uint64_t, uint64_t, uint64_t);
 
 

@@ -1,5 +1,5 @@
 #include <types.h>
-#include <stdint.h>
+
 #define STDIN 0
 #define STDOUT 1
 #define SPK 2

@@ -4,7 +4,10 @@
 
 
 void inputInterpreter(char* message){
+	
+	
 	if(message[0] == 0){
+		
 		return;
 	}
 	if(stringCompare(message,"help")){
@@ -22,17 +25,20 @@ void inputInterpreter(char* message){
 	}else if(stringCompare(message,"clear")){
 		clearShell();
 	}else{
+		
 		printf("Command '");
 		printf(message);
 		printf("' not found, try 'help'\n");
 	}
+	
 	return;
 }
 
 
 uint64_t stringCompare(char* str1, char* str2){
+	
 	int i = 0;
-
+while(1);
 	for (i = 0; str1[i]!=0 && str2[i]!=0; ++i)
 	{
 		if(str1[i]!=str2[i]){

@@ -1,4 +1,3 @@
-#include <interrupts.h>
 #include <syscalls.h>
 #include <kbdLogic.h>
 #include <naiveConsole.h>
@@ -17,9 +16,7 @@ static void readFromKbdNoPrint(char * buffer, uint64_t size) {
 	
 	while (i < size) {
 		c = getCharFromKbd();
-		if (c == -1){
-			_hlt();
-		} else {
+		if (c != -1){
 			buffer[i++] = c;
 		}
 	}
@@ -59,12 +56,8 @@ static void readNote(uint16_t * result) {
 	uint16_t note;
 	do {
 		note = getNoteFromKbd();
-		if (note == -1) {
-			_hlt();
-		} else {
-			result[0] = note;
-		}
 	} while (note == -1);
+	result[0] = note;
 	return;
 }
 
@@ -108,13 +101,13 @@ static void printInVideo(uint8_t * buffer, uint64_t size) {
 
 	while (i < size) {
 		uint8_t c = buffer[i++];
-		if (c == '\n') {
-			ncNewline();
-		} else {
-			ncPrintChar(c);
-		}
+		ncPrintChar(c);
 	}
 	return;
+}
+
+static void clear(void){
+	ncClear();
 }
 
 
@@ -185,17 +178,13 @@ void write(uint64_t fileDescriptor, uint64_t buffer, uint64_t size, uint64_t aux
 			printInSpk( (uint16_t) (((uint16_t *)buffer)[0]));
 			break;
 		case CLEAR:
-			ncClear();
+			clear();
 			break;
-		default:
-			;
 	}
 	return;
 
 }
-void clear(uint64_t fileDescriptor, uint64_t buffer, uint64_t size, uint64_t aux1, uint64_t aux2){
-	ncClear();
-}
+
 
 
 

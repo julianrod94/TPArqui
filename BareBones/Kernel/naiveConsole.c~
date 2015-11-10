@@ -24,7 +24,7 @@ void ncPrint(const char * string)
 
 void ncPrintChar(char character) {
 
-	if(currentVideo - video == width * height * 2){
+	if(currentVideo - video >= width * height * 2){
 		shiftLines();
 		currentVideo -= width * 2;
 		do {
